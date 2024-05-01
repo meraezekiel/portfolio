@@ -1,0 +1,30 @@
+.img_cont_second{
+    display: flex;
+    flex:1;
+    align-items: center;
+
+    .img_bg_second{
+        border-radius: 50%;
+        height:300px;
+        width:300px;
+        box-shadow: 0 0 10px cyan,
+            0 0 50px cyan,
+            0px 2px 145px 0px rgb(191, 0, 255);
+    }
+}
+
+.moreaboutme{
+    margin-top: 5%;
+    background-color: aqua;
+    width: 30%;
+    min-width: 200px;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-radius: 30px;
+}
+
+.moreaboutme:hover{
+    box-shadow: 0 0 10px cyan, 0 0 30px cyan, 0 0 50px cyan;
+    cursor: pointer;
+}

@@ -1,0 +1,15 @@
+#page_not_found{
+    .my_container{
+        //background-image: url('../../assets//images//crimson.jpg');
+        background-color: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-color: unset;
+        p{
+            color: red;
+        }
+    }
+}

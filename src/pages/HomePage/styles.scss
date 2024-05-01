@@ -1,0 +1,18 @@
+#homepage_main{
+    background-color: #052827;
+    margin:0 auto;
+
+    .my_container{
+        .desc{
+            justify-content: center;
+            align-items: center;
+            flex:1;
+            display:flex;
+            h1{
+                color:#fff;
+                font-weight: 600;   
+            }
+        }
+        
+    }
+}

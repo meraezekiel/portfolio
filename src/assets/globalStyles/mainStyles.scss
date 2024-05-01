@@ -1,0 +1,143 @@
+// responsive
+// @media  screen and (max-width: 1920px) {}
+// @media  screen and (max-width: 1440px) {}
+// @media  screen and (max-width: 1280px) {}
+// @media  screen and (max-width: 1100px) {}
+// @media  screen and (max-width: 1080px) {}
+// @media  screen and (max-width: 980px) {}
+// @media  screen and (max-width: 767px) {}
+// @media  screen and (max-width: 640px) {}
+// @media  screen and (max-width: 575px) {}
+// @media  screen and (max-width: 440px) {}
+// @media  screen and (max-width: 320px) {}
+// @media  screen and (max-width: 280px) {}
+body{
+  background-color: #052827;
+  font-family: "Poppins", sans-serif;
+  overflow-y: scroll !important;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  
+}
+#webpack-dev-server-client-overlay{
+  display: none;
+}
+.removeBS {
+  box-shadow: unset !important;
+}
+section{
+  width: 100%;
+}
+.textInput{
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  fieldset{
+    display: none;
+  }
+  input {
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    width: 100%;
+  }
+}
+.textInput_fc{
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  >div{
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    width: 100%;
+  }
+  
+  fieldset{
+    display: none;
+  }
+}
+.app_form {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 0 10px;
+  @media  screen and (max-width: 440px) {
+    max-width: 375px;
+  }
+  @media  screen and (max-width: 320px) {
+    max-width: 95%;
+  }
+}
+.my_container{
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 10px;
+  margin: 0 auto;
+  // padding-left: 45px;
+  // padding-right: 45px;
+    @media  screen and (max-width: 1440px) {
+      max-width: 1260px;
+    }
+    @media  screen and (max-width: 1280px) {
+      max-width: 1060px;
+    }
+    @media  screen and (max-width: 1080px) {
+      max-width: 960px;
+    }
+    @media  screen and (max-width: 980px) {
+      max-width: 747px;
+    }
+    @media  screen and (max-width: 767px) {
+      max-width: 620px;
+    }
+    @media  screen and (max-width: 640px) {
+      max-width: 547px;
+    }
+    @media  screen and (max-width: 575px) {
+      max-width: 420px;
+    }
+    @media  screen and (max-width: 440px) {
+      max-width: 375px;
+      // padding: 0 5px;
+    }
+    @media  screen and (max-width: 320px) {
+      max-width: 95%;
+    }
+}
+
+.my_header{
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 10px;
+  margin: 0 auto;
+  // padding-left: 45px;
+  // padding-right: 45px;
+    @media  screen and (max-width: 1440px) {
+      max-width: 1260px;
+    }
+    @media  screen and (max-width: 1280px) {
+      max-width: 1060px;
+    }
+    @media  screen and (max-width: 1080px) {
+      max-width: 960px;
+    }
+    @media  screen and (max-width: 980px) {
+      max-width: 747px;
+    }
+    @media  screen and (max-width: 767px) {
+      max-width: 620px;
+    }
+    @media  screen and (max-width: 640px) {
+      max-width: 547px;
+    }
+    @media  screen and (max-width: 575px) {
+      max-width: 420px;
+    }
+    @media  screen and (max-width: 440px) {
+      max-width: 375px;
+      // padding: 0 5px;
+    }
+    @media  screen and (max-width: 320px) {
+      max-width: 95%;
+    }
+}

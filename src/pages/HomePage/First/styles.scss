@@ -1,0 +1,18 @@
+.img_cont{
+    // position: absolute;
+    right:0;
+    top:0;
+    justify-content: flex-end;
+    align-items: flex-end;
+    display: flex;
+    // margin-top: -5%;
+
+    .img_bg{
+        border-radius: 50%;
+        height:500px;
+        width:500px;
+        box-shadow: 0 0 10px cyan,
+            0 0 50px cyan,
+            0px 2px 145px 0px rgb(191, 0, 255);
+    }
+}
