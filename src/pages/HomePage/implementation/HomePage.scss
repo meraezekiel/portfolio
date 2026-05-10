@@ -1,0 +1,19 @@
+.portfolio-mode {
+  background-color: #050a1f;
+  font-family: 'Poppins', 'Montserrat', system-ui, sans-serif;
+  color: #e2e8f0;
+  cursor: none;
+
+  a, button, [role="button"] { cursor: none; }
+
+  @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+    cursor: auto;
+    a, button, [role="button"] { cursor: pointer; }
+  }
+}
+
+.portfolio-main {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}

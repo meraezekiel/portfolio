@@ -1,0 +1,89 @@
+.portfolio-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 48px;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
+
+  &.is-scrolled {
+    padding: 16px 48px;
+    background: rgba(7, 12, 30, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  &__inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__logo {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    text-decoration: none;
+    justify-self: start;
+    transition: color 0.2s ease;
+
+    &:hover { color: #5eead4; }
+  }
+
+  &__email {
+    color: #cbd5e1;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+    justify-self: center;
+
+    &:hover { color: #fff; }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 48px;
+    justify-self: end;
+  }
+
+  &__link {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #5eead4, #b794f6);
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: #5eead4;
+      &::after { width: 100%; }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px 20px;
+
+    &__email { display: none; }
+    &__inner { grid-template-columns: auto 1fr; }
+    &__nav { gap: 24px; }
+    &__link { font-size: 12px; letter-spacing: 1px; }
+  }
+}

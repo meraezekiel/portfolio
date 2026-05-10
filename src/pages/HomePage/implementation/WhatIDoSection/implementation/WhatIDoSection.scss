@@ -1,0 +1,74 @@
+.what-i-do-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 40px;
+  padding: 120px 80px;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(183, 148, 246, 0.08), transparent 60%),
+    #050a1f;
+
+  &__scene {
+    position: relative;
+    height: 80vh;
+    min-height: 520px;
+    width: 100%;
+
+    > * { width: 100% !important; height: 100% !important; }
+  }
+
+  &__scene-fallback {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(183, 148, 246, 0.15), transparent 70%);
+    border-radius: 50%;
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  &__heading {
+    position: absolute;
+    top: -120px;
+    left: -240px;
+    margin: 0;
+    font-size: clamp(64px, 9vw, 140px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    pointer-events: none;
+    color: #fff;
+  }
+
+  &__heading-line {
+    display: block;
+
+    &--accent { color: #5eead4; }
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 520px;
+    margin-left: auto;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    padding: 80px 24px;
+
+    &__scene { height: 50vh; min-height: 360px; }
+    &__heading {
+      position: static;
+      text-align: center;
+      font-size: clamp(48px, 12vw, 80px);
+      margin-bottom: 32px;
+    }
+    &__cards { margin: 0 auto; }
+  }
+}
