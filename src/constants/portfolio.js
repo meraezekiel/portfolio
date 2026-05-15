@@ -49,6 +49,7 @@ export const PROJECTS = [
     description: 'Asset tracking platform with real-time inventory and analytics.',
     tags: ['React', 'Node.js', 'PostgreSQL'],
     image: '',
+    link: '',
   },
   {
     id: 2,
@@ -56,6 +57,7 @@ export const PROJECTS = [
     description: 'Interactive 3D portfolio with scroll-driven animations.',
     tags: ['React', 'Spline', 'GSAP'],
     image: '',
+    link: '',
   },
   {
     id: 3,
@@ -63,5 +65,14 @@ export const PROJECTS = [
     description: 'Cross-platform React Native app with offline-first architecture.',
     tags: ['React Native', 'Redux', 'SQLite'],
     image: '',
+    link: '',
+  },
+  {
+    id: 4,
+    title: 'QR Code Generator',
+    description: 'Lightweight web app to generate customizable QR codes on the fly.',
+    tags: ['React', 'Vercel'],
+    image: '',
+    link: 'https://qr-code-generator-rho-cyan.vercel.app/',
   },
 ];

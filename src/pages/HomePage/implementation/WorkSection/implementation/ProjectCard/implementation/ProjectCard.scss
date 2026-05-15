@@ -70,6 +70,35 @@
     letter-spacing: -2px;
   }
 
+  &--linked {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__live {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(5, 10, 31, 0.7);
+    border: 1px solid rgba(94, 234, 212, 0.25);
+    color: #5eead4;
+    backdrop-filter: blur(6px);
+    opacity: 0.85;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+  }
+
+  &:hover &__live {
+    opacity: 1;
+    transform: translate(-2px, 2px);
+  }
+
   &__body {
     position: relative;
     padding: 24px;

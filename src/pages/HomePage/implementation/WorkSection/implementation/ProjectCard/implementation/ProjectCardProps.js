@@ -4,6 +4,7 @@
  * @property {string} [description]
  * @property {string[]} [tags]
  * @property {string} [image]
+ * @property {string} [link]
  * @property {number} [index]
  */
 

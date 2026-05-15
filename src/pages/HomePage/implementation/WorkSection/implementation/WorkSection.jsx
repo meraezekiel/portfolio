@@ -26,6 +26,7 @@ export const WorkSection = () => {
             description={project.description}
             tags={project.tags}
             image={project.image}
+            link={project.link}
             index={index}
           />
         ))}
