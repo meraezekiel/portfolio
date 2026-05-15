@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export const useWhatIDoSectionHandler = () => {
   const sectionRef = useRef(null);

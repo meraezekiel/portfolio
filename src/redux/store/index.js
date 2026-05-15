@@ -21,14 +21,16 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export default () => {
-  let store = configureStore({ 
+const createStore = () => {
+  const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
       }),
-  })
-  let persistor = persistStore(store)
-  return { store, persistor }
-}
+  });
+  const persistor = persistStore(store);
+  return { store, persistor };
+};
+
+export default createStore;
