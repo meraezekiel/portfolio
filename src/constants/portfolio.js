@@ -64,7 +64,7 @@ export const PROJECTS = [
     ],
     tags: ['Expo', 'React Native', 'TypeScript'],
     link: '',
-    images: ['cover.png'],
+    images: ['cover.webp', 'products.webp', 'reports.webp'],
   },
   {
     slug: 'photo-studio',
@@ -81,7 +81,7 @@ export const PROJECTS = [
     ],
     tags: ['Tauri', 'Rust', 'React', 'ONNX Runtime'],
     link: '',
-    images: ['cover.png'],
+    images: ['cover.webp'],
   },
   {
     slug: 'kalendario-studio',
@@ -98,7 +98,7 @@ export const PROJECTS = [
     ],
     tags: ['Next.js', 'TypeScript', 'Zustand', 'IndexedDB'],
     link: '',
-    images: ['cover.png'],
+    images: ['cover.webp', 'giveaway-template.webp'],
   },
   {
     slug: 'qr-code-generator',
@@ -114,6 +114,6 @@ export const PROJECTS = [
     ],
     tags: ['React', 'Vite', 'Tailwind', 'Supabase'],
     link: 'https://qr-code-generator-rho-cyan.vercel.app/',
-    images: ['cover.png'],
+    images: ['cover.webp', 'live-preview.webp'],
   },
 ];

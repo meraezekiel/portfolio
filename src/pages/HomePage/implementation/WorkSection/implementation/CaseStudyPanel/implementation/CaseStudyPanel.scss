@@ -65,6 +65,9 @@
     aspect-ratio: 16 / 10;
     overflow: hidden;
     background: var(--tile-2);
+
+    // Show whole screenshots (tall phone shots included) instead of cropping them.
+    img.project-image { object-fit: contain; }
   }
 
   &__thumbs {
