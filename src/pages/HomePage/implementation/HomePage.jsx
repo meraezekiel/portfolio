@@ -1,6 +1,5 @@
 import { useHomePageHandler } from './useHomePageHandler';
 import { SmoothScroll } from '../../../components/SmoothScroll';
-import { CustomCursor } from '../../../components/CustomCursor';
 import { PortfolioHeader } from '../../../components/PortfolioHeader';
 import { HeroSection } from './HeroSection';
 import { AboutSection } from './AboutSection';
@@ -14,7 +13,6 @@ export const HomePage = () => {
 
   return (
     <SmoothScroll>
-      <CustomCursor />
       <PortfolioHeader />
       <main className="portfolio-main">
         <HeroSection />

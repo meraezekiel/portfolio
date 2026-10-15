@@ -17,6 +17,11 @@ test('opens the case study for its slug', () => {
   expect(onOpen).toHaveBeenCalledWith('qr');
 });
 
+test('takes its grid size from the variant', () => {
+  const { container } = render(<ProjectCard project={project} variant="featured" onOpen={() => {}} />);
+  expect(container.firstChild).toHaveClass('project-card', 'project-card--featured', 'bento-tile');
+});
+
 test('shows a separate live link when the project has one', () => {
   render(<ProjectCard project={project} index={0} onOpen={() => {}} />);
   expect(screen.getByRole('link', { name: 'Open QR Code Generator live site' })).toHaveAttribute('href', 'https://example.com');

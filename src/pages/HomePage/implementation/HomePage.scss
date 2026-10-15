@@ -1,19 +1,125 @@
 .portfolio-mode {
-  background-color: #050a1f;
-  font-family: 'Poppins', 'Montserrat', system-ui, sans-serif;
-  color: #e2e8f0;
-  cursor: none;
+  --bg: #09090b;
+  --tile: #111113;
+  --tile-2: #18181b;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+  --text: #fafafa;
+  --muted: #a1a1aa;
+  --dim: #8b8b94; // ≥ 4.5:1 on --bg for small text
+  --lime: #a3e635;
+  --lime-soft: rgba(163, 230, 53, 0.1);
+  --lime-line: rgba(163, 230, 53, 0.3);
+  --lime-text: #bef264;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius: 18px;
+  --gutter: clamp(16px, 4vw, 48px);
 
-  a, button, [role="button"] { cursor: none; }
-
-  @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
-    cursor: auto;
-    a, button, [role="button"] { cursor: pointer; }
-  }
+  background-color: var(--bg);
+  font-family: var(--font-body);
+  color: var(--muted);
+  -webkit-font-smoothing: antialiased;
 }
 
 .portfolio-main {
   position: relative;
   width: 100%;
   overflow-x: hidden;
+
+  // Faint grid behind the hero that fades out as the page goes on.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 900px;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask-image: linear-gradient(#000, transparent);
+    mask-image: linear-gradient(#000, transparent);
+  }
+}
+
+// Shared section frame used by every home page section.
+.bento-section {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px var(--gutter);
+
+  &__heading {
+    margin: 0 0 20px;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: var(--text);
+
+    span { color: var(--lime); }
+  }
+}
+
+.bento-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--lime);
+  text-transform: uppercase;
+}
+
+.bento-chip {
+  display: inline-block;
+  margin: 0 6px 6px 0;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--tile-2);
+  border: 1px solid var(--line);
+  color: #d4d4d8;
+  font-size: 13px;
+
+  &--accent {
+    background: var(--lime-soft);
+    border-color: rgba(163, 230, 53, 0.25);
+    color: var(--lime-text);
+  }
+}
+
+.bento-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+  &:hover { transform: translateY(-1px); }
+
+  &:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+  }
+
+  &--primary {
+    border: 0;
+    background: var(--lime);
+    color: #09090b;
+
+    &:hover { background: #bef264; }
+  }
+
+  &--secondary {
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--text);
+
+    &:hover { border-color: var(--lime-line); }
+  }
 }

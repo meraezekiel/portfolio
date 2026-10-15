@@ -1,26 +1,24 @@
 import { useProjectCardHandler } from './useProjectCardHandler';
+import { BentoTile } from '../../../../../../../components/BentoTile';
 import { ProjectImage } from '../../../../../../../components/ProjectImage/implementation/ProjectImage';
 import './ProjectCard.scss';
 
-export const ProjectCard = ({ project, index = 0, onOpen }) => {
+export const ProjectCard = ({ project, variant = 'small', onOpen }) => {
   const { handleOpen } = useProjectCardHandler(project.slug, onOpen);
-  const number = String(index + 1).padStart(2, '0');
 
   return (
-    <article className="project-card" data-cursor-hover>
+    <BentoTile as="article" className={`project-card project-card--${variant}`}>
       <div className="project-card__media">
         <ProjectImage slug={project.slug} file={project.images?.[0]} alt={project.title} label={project.title} />
       </div>
       <div className="project-card__body">
-        <span className="project-card__index">{number}</span>
         <h3 className="project-card__title">{project.title}</h3>
         <p className="project-card__pitch">{project.pitch}</p>
         <div className="project-card__tags">
           {project.tags.map((tag) => (
-            <span key={tag} className="project-card__tag">{tag}</span>
+            <span key={tag} className="bento-chip bento-chip--accent">{tag}</span>
           ))}
         </div>
-        <span className="project-card__cta" aria-hidden="true">View case study →</span>
       </div>
       <button
         type="button"
@@ -41,6 +39,6 @@ export const ProjectCard = ({ project, index = 0, onOpen }) => {
           </svg>
         </a>
       )}
-    </article>
+    </BentoTile>
   );
 };

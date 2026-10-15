@@ -5,21 +5,19 @@ export const useSkillsSectionHandler = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (!sectionRef.current) return undefined;
+    const section = sectionRef.current;
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     const ctx = gsap.context(() => {
-      gsap.from('.skills-section__heading span, .skills-section__intro, .marquee-row', {
+      gsap.from('.bento-section__heading, .bento-tile', {
         opacity: 0,
-        y: 40,
-        duration: 0.8,
-        stagger: 0.12,
+        y: 32,
+        duration: 0.7,
+        stagger: 0.08,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
+        scrollTrigger: { trigger: section, start: 'top 80%' },
       });
-    }, sectionRef);
+    }, section);
 
     return () => ctx.revert();
   }, []);

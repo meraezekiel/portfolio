@@ -1,52 +1,48 @@
-import { useEffect, useRef } from 'react';
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react';
 import { gsap } from 'gsap';
 
-export const useContactSectionHandler = () => {
+const COPIED_MS = 2000;
+const openUrl = (url) => window.location.assign(url);
+
+export const useContactSectionHandler = ({ email, navigate = openUrl } = {}) => {
   const sectionRef = useRef(null);
+  const timerRef = useRef(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (!sectionRef.current) return undefined;
+    const section = sectionRef.current;
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     const ctx = gsap.context(() => {
-      gsap.from('.contact-section__title', {
+      gsap.from('.bento-section__heading, .bento-tile', {
         opacity: 0,
-        y: 40,
-        duration: 1,
+        y: 32,
+        duration: 0.7,
+        stagger: 0.08,
         ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
+        scrollTrigger: { trigger: section, start: 'top 85%' },
       });
-
-      gsap.from('.contact-section__email', {
-        opacity: 0,
-        y: 30,
-        duration: 0.9,
-        delay: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-      });
-
-      gsap.from('.contact-section__social', {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        stagger: 0.1,
-        delay: 0.3,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-      });
-    }, sectionRef);
+    }, section);
 
     return () => ctx.revert();
   }, []);
 
-  return { sectionRef };
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  // Copy the address; if the clipboard is unavailable or blocked, open the email app instead.
+  const copyEmail = useCallback(async () => {
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setCopied(false), COPIED_MS);
+    } catch {
+      navigate(`mailto:${email}`);
+    }
+  }, [email, navigate]);
+
+  return { sectionRef, copied, copyEmail };
 };

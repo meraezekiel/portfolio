@@ -1,98 +1,130 @@
 .contact-section {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 80px 40px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(183, 148, 246, 0.1), transparent 60%),
-    #050a1f;
+  &.bento-section { padding-bottom: 24px; }
 
-  &__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+  &__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
   }
 
-  &__eyebrow {
-    color: #5eead4;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 4px;
-    margin-bottom: 32px;
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 32px;
   }
 
   &__title {
-    margin: 0 0 60px;
-    color: #fff;
-    font-size: clamp(48px, 8vw, 120px);
-    font-weight: 900;
-    line-height: 0.95;
-    letter-spacing: -3px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    color: var(--text);
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 15px;
   }
 
   &__email {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
-    color: #fff;
-    font-size: clamp(20px, 2.5vw, 32px);
-    font-weight: 600;
-    text-decoration: none;
-    padding: 18px 36px;
-    border: 1px solid rgba(94, 234, 212, 0.3);
-    border-radius: 999px;
-    background: rgba(94, 234, 212, 0.04);
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-    align-self: center;
+    gap: 6px;
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 6px 6px 6px 16px;
+    border-radius: 12px;
+    background: var(--tile-2);
+    border: 1px solid var(--line);
+  }
 
-    &:hover {
-      background: rgba(94, 234, 212, 0.12);
-      border-color: #5eead4;
-      transform: translateY(-3px);
+  &__address {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text);
+    text-decoration: none;
+    word-break: break-all;
+
+    &:hover { color: var(--lime-text); }
+  }
+
+  &__copy {
+    min-width: 76px;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--lime);
+    color: #09090b;
+    font: 600 13px var(--font-body);
+    cursor: pointer;
+
+    &:hover { background: #bef264; }
+
+    &:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
     }
   }
 
-  &__socials {
-    display: flex;
-    gap: 32px;
-    margin-top: 48px;
-    justify-content: center;
+  &__sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
-  &__social {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  &__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 22px;
+  }
 
-    &:hover { color: #5eead4; }
+  &__link {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:last-child { border-bottom: 0; }
+
+    span {
+      color: var(--lime);
+      transition: transform 0.2s ease;
+    }
+
+    &:hover span { transform: translate(2px, -2px); }
+
+    &:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 2px;
+    }
   }
 
   &__footer {
     display: flex;
     justify-content: space-between;
-    padding-top: 32px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.4);
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--dim);
     font-size: 13px;
   }
 
-  @media (max-width: 768px) {
-    padding: 80px 24px 24px;
-
-    &__footer {
-      flex-direction: column;
-      gap: 8px;
-      text-align: center;
-    }
+  @media (max-width: 900px) {
+    &__grid { grid-template-columns: 1fr; }
+    &__main { padding: 26px 22px; }
   }
 }

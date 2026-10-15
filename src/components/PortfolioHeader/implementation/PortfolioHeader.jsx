@@ -12,11 +12,7 @@ export const PortfolioHeader = () => {
           {PORTFOLIO_CONFIG.initials}
         </a>
 
-        <a href={`mailto:${PORTFOLIO_CONFIG.email}`} className="portfolio-header__email">
-          {PORTFOLIO_CONFIG.email}
-        </a>
-
-        <nav className="portfolio-header__nav">
+        <nav className="portfolio-header__nav" aria-label="Main">
           {NAV_LINKS.map((link) => (
             <a
               key={link.id}
@@ -27,6 +23,13 @@ export const PortfolioHeader = () => {
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="bento-button bento-button--primary portfolio-header__cta"
+            onClick={(e) => handleNavClick(e, 'contact')}
+          >
+            Hire me
+          </a>
         </nav>
       </div>
     </header>

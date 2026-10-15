@@ -1,47 +1,43 @@
 export const PORTFOLIO_CONFIG = {
-  name: 'JOHN ANTOQUE',
+  name: 'John Antoque',
+  firstName: 'John',
   initials: 'JA',
   email: 'androidantoque@gmail.com',
-  resumeUrl: '/resume.pdf',
+  // Add public/resume.pdf and set this to '/resume.pdf' to show the Résumé link.
+  resumeUrl: '',
   socials: {
     github: 'https://github.com/johnantoqueearthtrack',
     linkedin: '',
     twitter: '',
   },
-  roles: ['ENGINEER', 'DEVELOPER', 'CREATOR'],
-};
-
-// HOW TO REPLACE THESE PLACEHOLDER SCENES:
-// 1. Go to https://app.spline.design/community
-// 2. Search "avatar", "character", "robot follow cursor", or "look at mouse"
-// 3. Pick a scene with a named "Head" object (and ideally "Eye" / "Left Eye" / "Right Eye")
-//    — those names are what the cursor-tracking code looks for in HeroSection.
-// 4. Open the scene → top-right Export button → Code → React → copy the URL
-//    (it ends in `.splinecode`, e.g. https://prod.spline.design/<id>/scene.splinecode)
-// 5. Paste it below as the `hero` value.
-//
-// Only the hero renders 3D: one WebGL scene keeps the page smooth. It is skipped on touch
-// devices, low-core machines and reduced motion (see utilities/DeviceCapability.js).
-//
-// If your chosen scene's head/eye objects use different names, add them to HEAD_NAMES /
-// EYE_NAMES in useSplineCursorTrackingHandler.js — or rename them in Spline before exporting.
-export const SPLINE_SCENES = {
-  hero: 'https://prod.spline.design/5zTWuABu-wb2ZxpD/scene.splinecode',
+  // Hero "availability" tile. Set to null to hide it.
+  availability: {
+    label: 'Open to work',
+    detail: 'Freelance projects & full-time roles',
+  },
+  // Slug of the project shown in the hero's "Latest project" tile.
+  latestProject: 'photo-studio',
 };
 
 export const NAV_LINKS = [
-  { id: 'about', label: 'ABOUT' },
-  { id: 'work', label: 'WORK' },
-  { id: 'skills', label: 'SKILLS' },
-  { id: 'contact', label: 'CONTACT' },
+  { id: 'about', label: 'About' },
+  { id: 'work', label: 'Work' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
 ];
 
+export const STACK_HIGHLIGHTS = ['React', 'Next.js', 'Node', 'NestJS', 'React Native', 'Tauri'];
+
 export const FRONTEND_SKILLS = [
-  'React', 'Next.js', 'TypeScript', 'MUI', 'SCSS', 'Redux', 'React Native',
+  'React', 'Next.js', 'TypeScript', 'MUI', 'SCSS', 'Redux',
 ];
 
 export const BACKEND_SKILLS = [
   'Node.js', 'NestJS', 'Express.js', 'PostgreSQL', 'MongoDB', 'REST APIs',
+];
+
+export const MOBILE_DESKTOP_SKILLS = [
+  'React Native', 'Expo', 'Tauri', 'Rust',
 ];
 
 export const STATS = [

@@ -1,33 +1,31 @@
 import { useWorkSectionHandler } from './useWorkSectionHandler';
 import { ProjectCard } from './ProjectCard';
 import { CaseStudyPanel } from './CaseStudyPanel';
+import { cardVariant } from './cardVariant';
 import './WorkSection.scss';
 
 export const WorkSection = () => {
   const {
-    sectionRef, trackRef, progressRef, projects, activeProject, panelProject, openProject, closeProject,
+    sectionRef, projects, activeProject, panelProject, openProject, closeProject,
   } = useWorkSectionHandler();
 
   return (
-    <section id="work" className="work-section" ref={sectionRef}>
-      <header className="work-section__header">
-        <h2 className="work-section__heading">
-          <span>SELECTED</span>
-          <span className="work-section__heading--accent">WORK</span>
-        </h2>
-        <div className="work-section__meta">
-          <p className="work-section__subtitle">
-            Apps I've designed and built end to end — web, mobile and desktop. Pick one for the full story.
-          </p>
-          <div className="work-section__progress" aria-hidden="true">
-            <span ref={progressRef} className="work-section__progress-bar" />
-          </div>
-        </div>
-      </header>
+    <section id="work" className="work-section bento-section" ref={sectionRef}>
+      <div className="work-section__header">
+        <h2 className="bento-section__heading">Selected <span>work</span></h2>
+        <p className="work-section__subtitle">
+          Apps I've designed and built end to end. Pick one for the full story.
+        </p>
+      </div>
 
-      <div className="work-section__track" ref={trackRef}>
+      <div className="work-section__grid">
         {projects.map((project, index) => (
-          <ProjectCard key={project.slug} project={project} index={index} onOpen={openProject} />
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            variant={cardVariant(index, projects.length)}
+            onOpen={openProject}
+          />
         ))}
       </div>
 

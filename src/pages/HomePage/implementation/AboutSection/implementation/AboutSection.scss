@@ -1,54 +1,39 @@
 .about-section {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-  padding: 140px 80px;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(94, 234, 212, 0.08), transparent 55%),
-    #050a1f;
-
-  &__inner {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+  &__grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 60px;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 12px;
   }
 
-  &__heading {
-    margin: 0;
-    color: #5eead4;
-    font-size: clamp(20px, 1.8vw, 26px);
-    font-weight: 600;
-    letter-spacing: 4px;
+  &__bio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   &__lead {
-    margin: 0 0 28px;
-    color: #fff;
-    font-size: clamp(26px, 3vw, 40px);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+    color: var(--text);
   }
 
   &__paragraph {
-    margin: 0 0 20px;
-    color: #cbd5e1;
-    font-size: clamp(16px, 1.3vw, 19px);
-    line-height: 1.7;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
   }
 
-  @media (max-width: 1024px) {
-    gap: 48px;
-    padding: 80px 24px;
+  @media (max-width: 900px) {
+    &__grid { grid-template-columns: repeat(3, 1fr); }
+    &__bio { grid-column: span 3; }
+  }
 
-    &__inner {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
+  @media (max-width: 520px) {
+    &__grid { grid-template-columns: 1fr; }
+    &__bio { grid-column: auto; }
   }
 }

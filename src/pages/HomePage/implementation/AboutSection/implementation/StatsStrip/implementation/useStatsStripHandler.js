@@ -17,19 +17,12 @@ export const useStatsStripHandler = () => {
           value: target,
           duration: 1.4,
           ease: 'power2.out',
-          scrollTrigger: { trigger: strip, start: 'top 85%', once: true },
+          // The strip is `display: contents` (no box of its own), so trigger on its tile.
+          scrollTrigger: { trigger: el.closest('.stats-strip__item') ?? strip, start: 'top 85%', once: true },
           onUpdate: () => {
             el.textContent = String(Math.round(counter.value));
           },
         });
-      });
-      gsap.from('.stats-strip__item', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: strip, start: 'top 85%' },
       });
     }, strip);
 

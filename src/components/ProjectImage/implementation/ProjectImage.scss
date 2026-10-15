@@ -8,15 +8,15 @@
     display: grid;
     place-items: center;
     background:
-      radial-gradient(circle at 25% 30%, rgba(94, 234, 212, 0.16), transparent 55%),
-      radial-gradient(circle at 75% 75%, rgba(183, 148, 246, 0.2), transparent 55%),
-      #0b1228;
+      radial-gradient(circle at 80% 0%, rgba(163, 230, 53, 0.12), transparent 55%),
+      linear-gradient(135deg, #1c1c20, #26262b);
   }
 
   &__label {
     padding: 0 16px;
+    font-family: var(--font-display, inherit);
     font-size: clamp(20px, 3vw, 40px);
-    font-weight: 900;
+    font-weight: 700;
     letter-spacing: -1px;
     text-align: center;
     color: rgba(255, 255, 255, 0.14);

@@ -35,6 +35,20 @@ test('closing a shared-link panel clears the hash without going back', () => {
   back.mockRestore();
 });
 
+test('a panel opened by following a #work/<slug> link closes with Back, leaving no dead entry', () => {
+  const back = jest.spyOn(window.history, 'back').mockImplementation(() => {});
+  const { result } = renderHook(() => useCaseStudyRouteHandler(projects));
+  act(() => {
+    // What the browser does when an <a href="#work/qr"> is clicked: new entry, then popstate.
+    window.history.pushState(null, '', '/#work/qr');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  });
+  expect(result.current.activeSlug).toBe('qr');
+  act(() => result.current.closeProject());
+  expect(back).toHaveBeenCalledTimes(1);
+  back.mockRestore();
+});
+
 test('closing twice before popstate arrives only goes back once', () => {
   const back = jest.spyOn(window.history, 'back').mockImplementation(() => {});
   const { result } = renderHook(() => useCaseStudyRouteHandler(projects));

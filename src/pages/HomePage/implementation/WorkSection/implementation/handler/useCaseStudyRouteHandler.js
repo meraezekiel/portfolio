@@ -14,9 +14,12 @@ export const useCaseStudyRouteHandler = (projects) => {
   const pushedRef = useRef(false);
 
   useEffect(() => {
+    // Arriving at a #work/<slug> entry by navigation (a link click, or Forward) means the page
+    // without the panel is the previous entry, so closing should go Back to it.
     const handlePopState = () => {
-      pushedRef.current = false;
-      setActiveSlug(readSlugFromHash(projects));
+      const slug = readSlugFromHash(projects);
+      pushedRef.current = Boolean(slug);
+      setActiveSlug(slug);
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);

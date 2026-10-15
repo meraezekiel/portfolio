@@ -1,16 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROJECTS } from '../../../../../constants/portfolio';
-import { useHorizontalScrollHandler } from './handler/useHorizontalScrollHandler';
 import { useCaseStudyRouteHandler } from './handler/useCaseStudyRouteHandler';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const useWorkSectionHandler = () => {
   const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const progressRef = useRef(null);
   const lastProjectRef = useRef(null);
 
-  useHorizontalScrollHandler(sectionRef, trackRef, progressRef);
   const { activeSlug, openProject, closeProject } = useCaseStudyRouteHandler(PROJECTS);
 
   const activeProject = PROJECTS.find((project) => project.slug === activeSlug) ?? null;
@@ -18,24 +17,25 @@ export const useWorkSectionHandler = () => {
   if (activeProject) lastProjectRef.current = activeProject;
 
   useEffect(() => {
-    if (!sectionRef.current) return undefined;
+    const section = sectionRef.current;
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+
     const ctx = gsap.context(() => {
-      gsap.from('.work-section__heading span', {
+      gsap.from('.bento-section__heading, .project-card', {
         opacity: 0,
-        y: 40,
-        duration: 0.8,
-        stagger: 0.1,
+        y: 32,
+        duration: 0.7,
+        stagger: 0.08,
         ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+        scrollTrigger: { trigger: section, start: 'top 80%' },
       });
-    }, sectionRef);
+    }, section);
+
     return () => ctx.revert();
   }, []);
 
   return {
     sectionRef,
-    trackRef,
-    progressRef,
     projects: PROJECTS,
     activeProject,
     panelProject: lastProjectRef.current,
