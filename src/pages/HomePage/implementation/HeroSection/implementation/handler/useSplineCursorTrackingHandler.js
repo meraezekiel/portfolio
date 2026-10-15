@@ -10,6 +10,7 @@ const EYE_NAMES = [
 const HEAD_MAX_RAD = 0.35;
 const EYE_MAX_RAD = 0.18;
 const LERP = 0.12;
+const SETTLE = 0.0005;
 
 const findFirst = (spline, names) => {
   for (const name of names) {
@@ -32,7 +33,7 @@ const findAll = (spline, names) => {
   return found;
 };
 
-export const useSplineCursorTrackingHandler = () => {
+export const useSplineCursorTrackingHandler = (visibleRef) => {
   const splineRef = useRef(null);
   const headRef = useRef(null);
   const eyesRef = useRef([]);
@@ -76,15 +77,10 @@ export const useSplineCursorTrackingHandler = () => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return undefined;
 
-    const handleMove = (e) => {
-      targetRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      targetRef.current.y = (e.clientY / window.innerHeight) * 2 - 1;
-    };
-    window.addEventListener('mousemove', handleMove, { passive: true });
-
     const tick = () => {
-      currentRef.current.x += (targetRef.current.x - currentRef.current.x) * LERP;
-      currentRef.current.y += (targetRef.current.y - currentRef.current.y) * LERP;
+      const target = targetRef.current;
+      currentRef.current.x += (target.x - currentRef.current.x) * LERP;
+      currentRef.current.y += (target.y - currentRef.current.y) * LERP;
 
       const { x, y } = currentRef.current;
       const head = headRef.current;
@@ -101,15 +97,27 @@ export const useSplineCursorTrackingHandler = () => {
         eye.rotation.x = base.x + y * EYE_MAX_RAD;
       });
 
-      frameRef.current = requestAnimationFrame(tick);
+      // Stop the loop once the head has caught up; the next mousemove restarts it.
+      const settled = Math.abs(target.x - x) < SETTLE && Math.abs(target.y - y) < SETTLE;
+      frameRef.current = settled ? null : requestAnimationFrame(tick);
     };
-    frameRef.current = requestAnimationFrame(tick);
+
+    const handleMove = (e) => {
+      targetRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      targetRef.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+      const hasTargets = headRef.current || eyesRef.current.length > 0;
+      if (frameRef.current === null && visibleRef.current && hasTargets) {
+        frameRef.current = requestAnimationFrame(tick);
+      }
+    };
+    window.addEventListener('mousemove', handleMove, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMove);
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
     };
-  }, []);
+  }, [visibleRef]);
 
   return { handleSplineLoad };
 };

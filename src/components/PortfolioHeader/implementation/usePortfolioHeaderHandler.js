@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
+import { getLenis } from '../../SmoothScroll/implementation/lenisInstance';
+import { resolveScrollTarget } from './resolveScrollTarget';
 
 export const usePortfolioHeaderHandler = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,9 +15,11 @@ export const usePortfolioHeaderHandler = () => {
   const handleNavClick = useCallback((e, id) => {
     e.preventDefault();
     const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (!target) return;
+    const destination = resolveScrollTarget(target);
+    const lenis = getLenis();
+    if (lenis) lenis.scrollTo(destination, { offset: 0 });
+    else destination.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
   return { isScrolled, handleNavClick };

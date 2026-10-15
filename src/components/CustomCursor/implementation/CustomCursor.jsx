@@ -2,7 +2,9 @@ import { useCustomCursorHandler } from './useCustomCursorHandler';
 import './CustomCursor.scss';
 
 export const CustomCursor = () => {
-  const { cursorRef, ringRef } = useCustomCursorHandler();
+  const { enabled, cursorRef, ringRef } = useCustomCursorHandler();
+  if (!enabled) return null;
+
   return (
     <>
       <div ref={cursorRef} className="custom-cursor-dot" aria-hidden="true" />

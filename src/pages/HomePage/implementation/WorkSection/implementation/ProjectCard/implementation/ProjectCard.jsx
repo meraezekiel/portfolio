@@ -1,50 +1,46 @@
 import { useProjectCardHandler } from './useProjectCardHandler';
+import { ProjectImage } from '../../../../../../../components/ProjectImage/implementation/ProjectImage';
 import './ProjectCard.scss';
 
-export const ProjectCard = ({ title, description, tags, image, link, index = 0 }) => {
-  const { cardRef, handleMouseMove } = useProjectCardHandler();
-
-  const Wrapper = link ? 'a' : 'article';
-  const wrapperProps = link
-    ? { href: link, target: '_blank', rel: 'noopener noreferrer' }
-    : {};
+export const ProjectCard = ({ project, index = 0, onOpen }) => {
+  const { handleOpen } = useProjectCardHandler(project.slug, onOpen);
+  const number = String(index + 1).padStart(2, '0');
 
   return (
-    <Wrapper
-      ref={cardRef}
-      className={`project-card${link ? ' project-card--linked' : ''}`}
-      onMouseMove={handleMouseMove}
-      data-cursor-hover
-      {...wrapperProps}
-    >
-      <div className="project-card__glow" aria-hidden="true" />
+    <article className="project-card" data-cursor-hover>
       <div className="project-card__media">
-        {image ? (
-          <img src={image} alt={title} loading="lazy" />
-        ) : (
-          <div className="project-card__placeholder">
-            <span className="project-card__index">{String(index + 1).padStart(2, '0')}</span>
-          </div>
-        )}
-        {link && (
-          <span className="project-card__live" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M3 3h6v6M3 11L11 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </span>
-        )}
+        <ProjectImage slug={project.slug} file={project.images?.[0]} alt={project.title} label={project.title} />
       </div>
       <div className="project-card__body">
-        <h3 className="project-card__title">{title}</h3>
-        {description && <p className="project-card__description">{description}</p>}
-        {tags?.length > 0 && (
-          <div className="project-card__tags">
-            {tags.map((tag) => (
-              <span key={tag} className="project-card__tag">{tag}</span>
-            ))}
-          </div>
-        )}
+        <span className="project-card__index">{number}</span>
+        <h3 className="project-card__title">{project.title}</h3>
+        <p className="project-card__pitch">{project.pitch}</p>
+        <div className="project-card__tags">
+          {project.tags.map((tag) => (
+            <span key={tag} className="project-card__tag">{tag}</span>
+          ))}
+        </div>
+        <span className="project-card__cta" aria-hidden="true">View case study →</span>
       </div>
-    </Wrapper>
+      <button
+        type="button"
+        className="project-card__open"
+        onClick={handleOpen}
+        aria-label={`Open ${project.title} case study`}
+      />
+      {project.link && (
+        <a
+          className="project-card__live"
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${project.title} live site`}
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 3h6v6M3 11L11 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </a>
+      )}
+    </article>
   );
 };

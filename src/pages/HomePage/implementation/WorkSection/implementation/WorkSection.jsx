@@ -1,10 +1,12 @@
 import { useWorkSectionHandler } from './useWorkSectionHandler';
 import { ProjectCard } from './ProjectCard';
-import { PROJECTS } from '../../../../../constants/portfolio';
+import { CaseStudyPanel } from './CaseStudyPanel';
 import './WorkSection.scss';
 
 export const WorkSection = () => {
-  const { sectionRef } = useWorkSectionHandler();
+  const {
+    sectionRef, trackRef, progressRef, projects, activeProject, panelProject, openProject, closeProject,
+  } = useWorkSectionHandler();
 
   return (
     <section id="work" className="work-section" ref={sectionRef}>
@@ -13,24 +15,23 @@ export const WorkSection = () => {
           <span>SELECTED</span>
           <span className="work-section__heading--accent">WORK</span>
         </h2>
-        <p className="work-section__subtitle">
-          A few things I've shipped recently — production apps, side projects, and experiments.
-        </p>
+        <div className="work-section__meta">
+          <p className="work-section__subtitle">
+            Apps I've designed and built end to end — web, mobile and desktop. Pick one for the full story.
+          </p>
+          <div className="work-section__progress" aria-hidden="true">
+            <span ref={progressRef} className="work-section__progress-bar" />
+          </div>
+        </div>
       </header>
 
-      <div className="work-section__grid">
-        {PROJECTS.map((project, index) => (
-          <ProjectCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            tags={project.tags}
-            image={project.image}
-            link={project.link}
-            index={index}
-          />
+      <div className="work-section__track" ref={trackRef}>
+        {projects.map((project, index) => (
+          <ProjectCard key={project.slug} project={project} index={index} onOpen={openProject} />
         ))}
       </div>
+
+      <CaseStudyPanel project={panelProject} open={Boolean(activeProject)} onClose={closeProject} />
     </section>
   );
 };

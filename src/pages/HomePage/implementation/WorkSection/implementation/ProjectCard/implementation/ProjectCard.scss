@@ -1,122 +1,55 @@
 .project-card {
-  --mx: 50%;
-  --my: 50%;
-
   position: relative;
   display: flex;
   flex-direction: column;
-  background: rgba(15, 23, 42, 0.5);
+  flex-shrink: 0;
+  // Size by viewport height too, so the whole card fits while the section is pinned.
+  width: clamp(300px, calc((100vh - 560px) * 16 / 9), min(62vw, 760px));
+  background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.4s ease,
-              box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease;
 
-  &:hover {
-    transform: translateY(-8px);
-    border-color: rgba(94, 234, 212, 0.3);
-    box-shadow:
-      0 20px 60px -15px rgba(0, 0, 0, 0.5),
-      0 0 30px -10px rgba(94, 234, 212, 0.25);
+  &:hover,
+  &:focus-within {
+    transform: translateY(-6px);
+    border-color: rgba(94, 234, 212, 0.35);
   }
-
-  &__glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      400px circle at var(--mx) var(--my),
-      rgba(94, 234, 212, 0.12),
-      transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  &:hover &__glow { opacity: 1; }
 
   &__media {
-    position: relative;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: linear-gradient(135deg, #0c1629, #1e1438);
+    background: #0b1228;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .project-image { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
   }
 
-  &:hover &__media img { transform: scale(1.05); }
+  &:hover &__media .project-image { transform: scale(1.04); }
 
-  &__placeholder {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(94, 234, 212, 0.12), transparent 50%),
-      radial-gradient(circle at 70% 70%, rgba(183, 148, 246, 0.15), transparent 50%);
-  }
+  &__body { padding: 28px; }
 
   &__index {
-    font-size: clamp(48px, 6vw, 80px);
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.08);
-    letter-spacing: -2px;
-  }
-
-  &--linked {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  &__live {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 999px;
-    background: rgba(5, 10, 31, 0.7);
-    border: 1px solid rgba(94, 234, 212, 0.25);
+    display: block;
+    margin-bottom: 8px;
     color: #5eead4;
-    backdrop-filter: blur(6px);
-    opacity: 0.85;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 2;
-  }
-
-  &:hover &__live {
-    opacity: 1;
-    transform: translate(-2px, 2px);
-  }
-
-  &__body {
-    position: relative;
-    padding: 24px;
-    z-index: 2;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
   }
 
   &__title {
     margin: 0 0 8px;
     color: #fff;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
+    font-size: clamp(24px, 2.4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
   }
 
-  &__description {
-    margin: 0 0 16px;
+  &__pitch {
+    margin: 0 0 18px;
     color: #94a3b8;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
   }
 
@@ -124,6 +57,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+    margin-bottom: 20px;
   }
 
   &__tag {
@@ -135,5 +69,62 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.3px;
+  }
+
+  &__cta {
+    color: #5eead4;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  &__open {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: inherit;
+
+    &:focus-visible {
+      outline: 2px solid #5eead4;
+      outline-offset: -4px;
+    }
+  }
+
+  &__live {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: rgba(5, 10, 31, 0.85);
+    border: 1px solid rgba(94, 234, 212, 0.3);
+    color: #5eead4;
+    transition: transform 0.3s ease, background 0.3s ease;
+
+    &:hover {
+      transform: translate(-2px, 2px);
+      background: #050a1f;
+    }
+  }
+
+  // Short desktop screens (e.g. 1366x768 laptops): compact body so the pinned card fits.
+  @media (min-width: 900px) and (max-height: 820px) {
+    &__body { padding: 18px 22px; }
+    &__index { margin-bottom: 4px; }
+    &__title { margin-bottom: 4px; font-size: 22px; }
+    &__pitch { margin-bottom: 12px; font-size: 14px; line-height: 1.45; }
+    &__tags { margin-bottom: 12px; }
+  }
+
+  @media (max-width: 899px), (prefers-reduced-motion: reduce) {
+    width: 100%;
   }
 }

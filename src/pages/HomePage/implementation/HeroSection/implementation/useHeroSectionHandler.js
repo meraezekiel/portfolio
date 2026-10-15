@@ -1,14 +1,20 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { PORTFOLIO_CONFIG } from '../../../../../constants/portfolio';
+import { readDeviceCapability, shouldRenderSpline } from '../../../../../utilities/DeviceCapability';
 import { useRoleRotationHandler } from './handler/useRoleRotationHandler';
 import { useSplineCursorTrackingHandler } from './handler/useSplineCursorTrackingHandler';
+import { useSplineVisibilityHandler } from './handler/useSplineVisibilityHandler';
 
 export const useHeroSectionHandler = () => {
   const nameRef = useRef(null);
   const roleRef = useRef(null);
+  const sceneRef = useRef(null);
+  const visibleRef = useRef(true);
+  const [canRenderSpline] = useState(() => shouldRenderSpline(readDeviceCapability()));
   const { currentRole, glitchKey } = useRoleRotationHandler(PORTFOLIO_CONFIG.roles, 2400);
-  const { handleSplineLoad } = useSplineCursorTrackingHandler();
+  const { handleSplineLoad: handleTrackingLoad } = useSplineCursorTrackingHandler(visibleRef);
+  const { handleSplineLoad } = useSplineVisibilityHandler(sceneRef, visibleRef, handleTrackingLoad);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -41,9 +47,23 @@ export const useHeroSectionHandler = () => {
         delay: 1,
         ease: 'power3.out',
       });
+      gsap.from('.hero-section__scroll-hint', {
+        opacity: 0,
+        duration: 0.8,
+        delay: 1.2,
+        ease: 'power3.out',
+      });
     });
     return () => ctx.revert();
   }, []);
 
-  return { nameRef, roleRef, currentRole, glitchKey, handleSplineLoad };
+  return {
+    nameRef,
+    roleRef,
+    sceneRef,
+    canRenderSpline,
+    currentRole,
+    glitchKey,
+    handleSplineLoad,
+  };
 };

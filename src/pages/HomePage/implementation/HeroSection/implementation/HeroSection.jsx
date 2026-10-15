@@ -6,7 +6,9 @@ import './HeroSection.scss';
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 export const HeroSection = () => {
-  const { nameRef, roleRef, currentRole, glitchKey, handleSplineLoad } = useHeroSectionHandler();
+  const {
+    nameRef, roleRef, sceneRef, canRenderSpline, currentRole, glitchKey, handleSplineLoad,
+  } = useHeroSectionHandler();
 
   const [firstName, lastName] = PORTFOLIO_CONFIG.name.split(' ');
 
@@ -22,10 +24,14 @@ export const HeroSection = () => {
         </h1>
       </div>
 
-      <div className="hero-section__scene" aria-hidden="true">
-        <Suspense fallback={<div className="hero-section__scene-fallback" />}>
-          <Spline scene={SPLINE_SCENES.hero} onLoad={handleSplineLoad} />
-        </Suspense>
+      <div className="hero-section__scene" ref={sceneRef} aria-hidden="true">
+        {canRenderSpline ? (
+          <Suspense fallback={<div className="hero-section__scene-fallback" />}>
+            <Spline scene={SPLINE_SCENES.hero} onLoad={handleSplineLoad} />
+          </Suspense>
+        ) : (
+          <div className="hero-section__scene-fallback hero-section__scene-fallback--static" />
+        )}
       </div>
 
       <div className="hero-section__role" ref={roleRef}>
@@ -48,6 +54,11 @@ export const HeroSection = () => {
           <path d="M3 3h6v6M3 11L11 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       </a>
+
+      <span className="hero-section__scroll-hint" aria-hidden="true">
+        SCROLL
+        <span className="hero-section__scroll-line" />
+      </span>
     </section>
   );
 };

@@ -1,11 +1,8 @@
 /**
  * @typedef {Object} ProjectCardProps
- * @property {string} title
- * @property {string} [description]
- * @property {string[]} [tags]
- * @property {string} [image]
- * @property {string} [link]
+ * @property {{slug: string, title: string, pitch: string, tags: string[], link: string, images: string[]}} project
  * @property {number} [index]
+ * @property {(slug: string) => void} onOpen
  */
 
 export {};

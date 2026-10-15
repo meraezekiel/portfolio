@@ -14,31 +14,20 @@ export const useAboutSectionHandler = () => {
         duration: 0.8,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: '.about-section__copy',
+          trigger: '.about-section__inner',
           start: 'top 80%',
         },
       });
 
-      gsap.from('.about-section__paragraph', {
+      gsap.from('.about-section__lead, .about-section__paragraph', {
         opacity: 0,
         y: 30,
         duration: 0.9,
         stagger: 0.15,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: '.about-section__copy',
+          trigger: '.about-section__inner',
           start: 'top 75%',
-        },
-      });
-
-      gsap.from('.about-section__scene', {
-        opacity: 0,
-        x: -60,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 70%',
         },
       });
     }, sectionRef);

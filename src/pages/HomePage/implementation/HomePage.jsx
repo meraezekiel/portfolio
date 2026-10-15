@@ -4,8 +4,8 @@ import { CustomCursor } from '../../../components/CustomCursor';
 import { PortfolioHeader } from '../../../components/PortfolioHeader';
 import { HeroSection } from './HeroSection';
 import { AboutSection } from './AboutSection';
-import { WhatIDoSection } from './WhatIDoSection';
 import { WorkSection } from './WorkSection';
+import { SkillsSection } from './SkillsSection';
 import { ContactSection } from './ContactSection';
 import './HomePage.scss';
 
@@ -19,8 +19,8 @@ export const HomePage = () => {
       <main className="portfolio-main">
         <HeroSection />
         <AboutSection />
-        <WhatIDoSection />
         <WorkSection />
+        <SkillsSection />
         <ContactSection />
       </main>
     </SmoothScroll>
