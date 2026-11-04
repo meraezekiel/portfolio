@@ -7,9 +7,7 @@
   &--placeholder {
     display: grid;
     place-items: center;
-    background:
-      radial-gradient(circle at 80% 0%, rgba(163, 230, 53, 0.12), transparent 55%),
-      linear-gradient(135deg, #1c1c20, #26262b);
+    background: var(--soft);
   }
 
   &__label {
@@ -19,6 +17,6 @@
     font-weight: 700;
     letter-spacing: -1px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.14);
+    color: var(--muted);
   }
 }

@@ -5,6 +5,6 @@ export const scrollToSection = (id) => {
   const target = document.getElementById(id);
   if (!target) return;
   const lenis = getLenis();
-  if (lenis) lenis.scrollTo(target, { offset: -72 });
+  if (lenis) lenis.scrollTo(target, { offset: -24 });
   else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };

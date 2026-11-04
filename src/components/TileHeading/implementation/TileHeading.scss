@@ -1,0 +1,33 @@
+.tile-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #fff;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    color: var(--ink);
+  }
+}
+
+.tile-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}

@@ -1,125 +1,167 @@
 .portfolio-mode {
-  --bg: #09090b;
-  --tile: #111113;
-  --tile-2: #18181b;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.15);
-  --text: #fafafa;
-  --muted: #a1a1aa;
-  --dim: #8b8b94; // ≥ 4.5:1 on --bg for small text
-  --lime: #a3e635;
-  --lime-soft: rgba(163, 230, 53, 0.1);
-  --lime-line: rgba(163, 230, 53, 0.3);
-  --lime-text: #bef264;
-  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --radius: 18px;
-  --gutter: clamp(16px, 4vw, 48px);
+  --bg: #f3f2ee;
+  --card: #ffffff;
+  --ink: #14213d;
+  --body: #4b5563;
+  --muted: #6b7280;
+  --line: #e6e4df;
+  --soft: #f7f6f3;
+  --accent: #ea6a1f;
+  --accent-soft: #fdf0e7;
+  --glow: 0 0 0 1px rgba(120, 140, 255, 0.1), 24px 0 60px -20px rgba(110, 140, 255, 0.35);
+  --shadow: 0 1px 2px rgba(20, 33, 61, 0.04), 0 8px 24px -12px rgba(20, 33, 61, 0.12);
+  --lines: rgba(20, 33, 61, 0.07);
+  --pill: #14213d;
+  --pill-ink: #ffffff;
+  --font-sans: 'Poppins', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', 'Poppins', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
-  background-color: var(--bg);
-  font-family: var(--font-body);
-  color: var(--muted);
+  margin: 0;
+  background: var(--bg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--body);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  &[data-theme='dark'] {
+    --bg: #070c1f;
+    --card: #0e1530;
+    --ink: #f1f5f9;
+    --body: #cbd5e1;
+    --muted: #94a3b8;
+    --line: rgba(255, 255, 255, 0.08);
+    --soft: #121a38;
+    --accent: #f5843f;
+    --accent-soft: rgba(245, 132, 63, 0.12);
+    --glow: 0 0 0 1px rgba(120, 140, 255, 0.12), 24px 0 60px -20px rgba(110, 140, 255, 0.25);
+    --shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.6);
+    --lines: rgba(255, 255, 255, 0.05);
+    --pill: #f1f5f9;
+    --pill-ink: #14213d;
+  }
+
+}
+
+// Zero-specificity scope so every link component can set its own color.
+:where(.portfolio-mode) a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.portfolio-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  color: var(--body);
+  background: var(--bg);
+  overflow: hidden;
+  transition: background 300ms var(--ease);
+
+  &__lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    stroke: var(--lines);
+    stroke-width: 1.2;
+  }
+
+  &__line {
+    &--a { animation: portfolio-drift-a 18s ease-in-out infinite; }
+    &--b { animation: portfolio-drift-b 22s ease-in-out infinite; }
+    &--c { animation: portfolio-drift-a 26s ease-in-out infinite; }
+    &--d { animation: portfolio-drift-b 20s ease-in-out infinite; }
+  }
+
+  &__status {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--pill);
+    color: var(--pill-ink);
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px -8px rgba(20, 33, 61, 0.5);
+
+    span {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__line { animation: none; }
+  }
 }
 
 .portfolio-main {
   position: relative;
-  width: 100%;
-  overflow-x: hidden;
+  flex: 1 1 600px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 40px clamp(20px, 3vw, 44px) 48px clamp(16px, 2vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 1360px;
 
-  // Faint grid behind the hero that fades out as the page goes on.
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    height: 900px;
-    pointer-events: none;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 32px 32px;
-    -webkit-mask-image: linear-gradient(#000, transparent);
-    mask-image: linear-gradient(#000, transparent);
+  @media (max-width: 900px) {
+    flex: 1 1 auto;
+    padding: 24px 16px 72px;
   }
 }
 
-// Shared section frame used by every home page section.
-.bento-section {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 56px var(--gutter);
-
-  &__heading {
-    margin: 0 0 20px;
-    font-family: var(--font-display);
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 600;
-    letter-spacing: -1px;
-    color: var(--text);
-
-    span { color: var(--lime); }
-  }
-}
-
-.bento-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: var(--lime);
-  text-transform: uppercase;
-}
-
-.bento-chip {
-  display: inline-block;
-  margin: 0 6px 6px 0;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--tile-2);
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  grid-auto-flow: dense;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 28px;
+  background: var(--soft);
   border: 1px solid var(--line);
-  color: #d4d4d8;
-  font-size: 13px;
+  box-shadow: var(--glow);
 
-  &--accent {
-    background: var(--lime-soft);
-    border-color: rgba(163, 230, 53, 0.25);
-    color: var(--lime-text);
+  @media (max-width: 600px) {
+    padding: 10px;
+    border-radius: 22px;
   }
 }
 
-.bento-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 18px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+@keyframes portfolio-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
-  &:hover { transform: translateY(-1px); }
+@keyframes portfolio-marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
 
-  &:focus-visible {
-    outline: 2px solid var(--lime);
-    outline-offset: 3px;
-  }
+@keyframes portfolio-drift-a {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -25px); }
+}
 
-  &--primary {
-    border: 0;
-    background: var(--lime);
-    color: #09090b;
-
-    &:hover { background: #bef264; }
-  }
-
-  &--secondary {
-    border: 1px solid var(--line-strong);
-    background: transparent;
-    color: var(--text);
-
-    &:hover { border-color: var(--lime-line); }
-  }
+@keyframes portfolio-drift-b {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-50px, 30px); }
 }

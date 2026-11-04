@@ -28,8 +28,8 @@
     height: 100%;
     overflow-y: auto;
     overscroll-behavior: contain;
-    background: var(--tile);
-    border-left: 1px solid rgba(163, 230, 53, 0.15);
+    background: var(--card);
+    border-left: 1px solid var(--line);
     box-shadow: -30px 0 80px rgba(0, 0, 0, 0.5);
     transform: translateX(100%);
     transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
@@ -48,15 +48,15 @@
     width: 40px;
     height: 40px;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(9, 9, 11, 0.85);
-    color: var(--text);
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
     transition: color 0.2s ease, border-color 0.2s ease;
 
     &:hover,
     &:focus-visible {
-      color: var(--lime);
-      border-color: var(--lime);
+      color: var(--accent);
+      border-color: var(--accent);
       outline: none;
     }
   }
@@ -64,7 +64,7 @@
   &__hero {
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: var(--tile-2);
+    background: var(--soft);
 
     // Show whole screenshots (tall phone shots included) instead of cropping them.
     img.project-image { object-fit: contain; }
@@ -93,7 +93,7 @@
 
     &--active {
       opacity: 1;
-      border-color: var(--lime);
+      border-color: var(--accent);
     }
   }
 
@@ -108,17 +108,17 @@
 
   &__tag {
     padding: 4px 10px;
-    background: rgba(163, 230, 53, 0.08);
-    border: 1px solid rgba(163, 230, 53, 0.2);
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
     border-radius: 999px;
-    color: var(--lime);
+    color: var(--accent);
     font-size: 11px;
     font-weight: 500;
   }
 
   &__title {
     margin: 0 0 12px;
-    color: var(--text);
+    color: var(--ink);
     font-family: var(--font-display);
     font-size: clamp(28px, 4vw, 44px);
     font-weight: 600;
@@ -128,14 +128,14 @@
 
   &__pitch {
     margin: 0 0 32px;
-    color: var(--text);
+    color: var(--ink);
     font-size: 18px;
     line-height: 1.5;
   }
 
   &__subheading {
     margin: 28px 0 10px;
-    color: var(--lime);
+    color: var(--accent);
     font-family: var(--font-mono);
     font-size: 12px;
     font-weight: 500;
@@ -154,7 +154,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    color: #d4d4d8;
+    color: var(--body);
     font-size: 15px;
     line-height: 1.6;
 
@@ -169,7 +169,7 @@
         top: 17px;
         width: 12px;
         height: 1.5px;
-        background: var(--lime);
+        background: var(--accent);
       }
     }
   }
@@ -180,17 +180,17 @@
     gap: 8px;
     margin-top: 32px;
     padding: 12px 22px;
-    border: 1px solid var(--lime);
+    border: 1px solid var(--accent);
     border-radius: 999px;
-    color: var(--lime);
+    color: var(--accent);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease;
 
     &:hover {
-      background: var(--lime);
-      color: #09090b;
+      background: var(--accent);
+      color: #fff;
     }
   }
 

@@ -1,0 +1,71 @@
+.experience-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__badge {
+    flex: 1;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__ring {
+    width: 104px;
+    height: 104px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--soft);
+    box-shadow: inset 0 2px 6px rgba(20, 33, 61, 0.08), 0 12px 24px -10px rgba(20, 33, 61, 0.25);
+  }
+
+  &__core {
+    width: 76px;
+    height: 76px;
+    border-radius: 999px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  &__value {
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  &__unit {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+  }
+
+  &__role {
+    margin-top: -8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--pill);
+    color: var(--pill-ink);
+    font-size: 11px;
+    font-weight: 600;
+
+    span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+  }
+}

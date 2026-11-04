@@ -1,35 +1,32 @@
-import { useSkillsSectionHandler } from './useSkillsSectionHandler';
 import { BentoTile } from '../../../../../components/BentoTile';
-import {
-  FRONTEND_SKILLS, BACKEND_SKILLS, MOBILE_DESKTOP_SKILLS,
-} from '../../../../../constants/portfolio';
+import { TileHeading } from '../../../../../components/TileHeading';
+import { FRONTEND_SKILLS, BACKEND_SKILLS } from '../../../../../constants/portfolio';
 import './SkillsSection.scss';
 
-const GROUPS = [
-  { title: 'Frontend', blurb: 'Fast, responsive interfaces people enjoy using.', skills: FRONTEND_SKILLS },
-  { title: 'Backend', blurb: 'APIs and services that scale with the business.', skills: BACKEND_SKILLS },
-  { title: 'Mobile & desktop', blurb: 'Offline-first apps for phones, tablets and Windows.', skills: MOBILE_DESKTOP_SKILLS },
+const CODE_ICON = 'm18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16';
+
+const ROWS = [
+  { skills: FRONTEND_SKILLS, direction: 'forward' },
+  { skills: BACKEND_SKILLS, direction: 'reverse' },
 ];
 
-export const SkillsSection = () => {
-  const { sectionRef } = useSkillsSectionHandler();
-
-  return (
-    <section id="skills" className="skills-section bento-section" ref={sectionRef}>
-      <h2 className="bento-section__heading">What I <span>do</span></h2>
-      <div className="skills-section__grid">
-        {GROUPS.map(({ title, blurb, skills }) => (
-          <BentoTile key={title} className="skills-section__group">
-            <h3 className="skills-section__title">{title}</h3>
-            <p className="skills-section__blurb">{blurb}</p>
-            <div>
-              {skills.map((skill) => (
-                <span key={skill} className="bento-chip">{skill}</span>
-              ))}
-            </div>
-          </BentoTile>
-        ))}
-      </div>
-    </section>
-  );
-};
+export const SkillsSection = () => (
+  <BentoTile as="section" id="skills" className="skills-section">
+    <div className="skills-section__intro">
+      <TileHeading icon={CODE_ICON} title="SKILLSET" />
+    </div>
+    <p className="tile-text skills-section__intro">Frontend and backend — the stack I reach for first.</p>
+    <div className="skills-section__rows">
+      {ROWS.map(({ skills, direction }) => (
+        <div key={direction} className={`skills-section__row skills-section__row--${direction}`}>
+          {[...skills, ...skills].map((skill, index) => (
+            <span key={`${skill}-${index}`} className="skills-section__pill" aria-hidden={index >= skills.length}>
+              {skill}
+              <span className="skills-section__dot" />
+            </span>
+          ))}
+        </div>
+      ))}
+    </div>
+  </BentoTile>
+);

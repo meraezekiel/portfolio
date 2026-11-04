@@ -1,0 +1,60 @@
+.highlights-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  &__intro {
+    flex: 1 1 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__list {
+    flex: 1.4 1 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__item {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  &__who {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    strong {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+  }
+
+  &__text {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--body);
+  }
+
+  &__tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+}

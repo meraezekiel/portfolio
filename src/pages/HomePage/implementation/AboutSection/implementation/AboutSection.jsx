@@ -1,29 +1,20 @@
-import { useAboutSectionHandler } from './useAboutSectionHandler';
-import { StatsStrip } from './StatsStrip';
 import { BentoTile } from '../../../../../components/BentoTile';
-import { STATS } from '../../../../../constants/portfolio';
+import { TileHeading } from '../../../../../components/TileHeading';
+import portrait from '../../../../../assets/images/profile3.jpg';
+import formal from '../../../../../assets/images/profile2.jpg';
+import casual from '../../../../../assets/images/profile.jpg';
 import './AboutSection.scss';
 
-export const AboutSection = () => {
-  const { sectionRef } = useAboutSectionHandler();
+const PERSON_ICON = 'M16 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM20 21a8 8 0 0 0-16 0';
 
-  return (
-    <section id="about" className="about-section bento-section" ref={sectionRef}>
-      <h2 className="bento-section__heading">About <span>me</span></h2>
-      <div className="about-section__grid">
-        <BentoTile className="about-section__bio">
-          <span className="bento-label">About</span>
-          <p className="about-section__lead">
-            I build fast, production-ready apps — from the database to the pixels.
-          </p>
-          <p className="about-section__paragraph">
-            Full-stack developer with 4+ years of experience building scalable web applications
-            with React, Next.js, Node.js and NestJS. Skilled in microservices, CMS development and
-            low-code platforms, taking products from concept to deployment.
-          </p>
-        </BentoTile>
-        <StatsStrip stats={STATS} />
-      </div>
-    </section>
-  );
-};
+export const AboutSection = () => (
+  <BentoTile as="section" id="about" className="about-section">
+    <TileHeading icon={PERSON_ICON} title="ABOUT" />
+    <p className="tile-text">Who I am and how I work.</p>
+    <div className="about-section__photos">
+      <div className="about-section__photo about-section__photo--back"><img src={portrait} alt="" /></div>
+      <div className="about-section__photo about-section__photo--middle"><img src={formal} alt="" /></div>
+      <div className="about-section__photo about-section__photo--front"><img src={casual} alt="" /></div>
+    </div>
+  </BentoTile>
+);

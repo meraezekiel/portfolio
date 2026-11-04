@@ -1,31 +1,53 @@
 .skills-section {
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
 
-  &__group {
+  &__intro { padding: 0 18px; }
+
+  &__rows {
+    margin-top: auto;
+    padding-top: 14px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
 
-  &__title {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: 20px;
+  &__row {
+    display: flex;
+    gap: 8px;
+    width: max-content;
+
+    &--forward { animation: portfolio-marquee 26s linear infinite; }
+    &--reverse { animation: portfolio-marquee-reverse 30s linear infinite; }
+  }
+
+  &__pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    font-size: 12px;
     font-weight: 600;
-    color: var(--text);
+    color: var(--ink);
+    white-space: nowrap;
   }
 
-  &__blurb {
-    margin: 0 0 6px;
-    font-size: 14px;
-    line-height: 1.5;
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #22c55e;
   }
 
-  @media (max-width: 900px) {
-    &__grid { grid-template-columns: 1fr; }
+  @media (prefers-reduced-motion: reduce) {
+    &__row { animation: none; }
   }
 }
