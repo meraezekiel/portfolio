@@ -124,7 +124,7 @@ export const CONTACT_NOTE = "Tell me what you're building. I usually reply withi
 
 export const HIGHLIGHTS = [
   { title: '4+ years in production', text: 'Scalable web applications with React, Next.js, Node.js and NestJS.', tag: 'Web · APIs · Microservices' },
-  { title: '5 featured projects', text: 'Point-of-sale, ID photo, calendar, social automation and QR tools, built end to end.', tag: 'Concept · Build · Deploy' },
+  { title: '6 featured projects', text: 'Point-of-sale, ID photo, calendar, social media automation and QR tools, built end to end.', tag: 'Concept · Build · Deploy' },
   { title: '3 platforms', text: 'Web, mobile and desktop, including apps that work fully offline.', tag: 'Next.js · React Native · Tauri' },
 ];
 
@@ -202,6 +202,24 @@ export const PROJECTS = [
     tags: ['Node.js', 'GitHub Actions', 'Gemini', 'Telegram Bot API', 'Graph API', 'ffmpeg'],
     link: '',
     images: ['cover.webp', 'telegram-draft.webp'],
+  },
+  {
+    slug: 'daily-bread',
+    title: 'Daily Bread Verses',
+    tagline: 'a verse a day, hands-free.',
+    pitch: 'Posts a Bible verse image every morning and a Reel every evening to Facebook and Instagram.',
+    problem: 'A daily verse page has to post every single day on two platforms, and doing it by hand means a missed day the moment you get busy.',
+    built: 'A Node.js pipeline on GitHub Actions that takes the next verse from a Supabase queue, generates a background with AI, sets the verse with sharp and posts it. In the evening ffmpeg turns the same verse into a 15-second Reel with music. The whole pipeline is also built as n8n workflows, running in Docker with ffmpeg.',
+    features: [
+      'Image post at 7 AM and a Reel at 6 PM, on Facebook and Instagram',
+      'The queue refills itself from 372 verses and skips any used in the last year',
+      'A failed post can be retried without posting twice',
+      'Old images are cleaned up so storage never fills',
+      'Same pipeline as GitHub Actions or as n8n workflows',
+    ],
+    tags: ['Node.js', 'GitHub Actions', 'Supabase', 'n8n', 'ffmpeg', 'Graph API'],
+    link: '',
+    images: ['cover.webp', 'reel.webp'],
   },
   {
     slug: 'qr-code-generator',
