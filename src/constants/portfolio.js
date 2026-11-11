@@ -6,7 +6,7 @@ export const PORTFOLIO_CONFIG = {
   experience: '4+',
   // A social with an empty URL hides its sidebar button.
   socials: {
-    github: 'https://github.com/johnantoqueearthtrack',
+    github: 'https://github.com/meraezekiel',
     linkedin: '',
   },
   // Floating status pill. Set to '' to hide it.
