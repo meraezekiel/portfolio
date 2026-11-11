@@ -16,6 +16,7 @@ export const PORTFOLIO_CONFIG = {
 export const NAV_LINKS = [
   { id: 'hero', label: 'Home', icon: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z' },
   { id: 'work', label: 'Projects', icon: 'M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z' },
+  { id: 'experience', label: 'Experience', icon: 'M3 7h18v13H3zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18' },
   { id: 'services', label: 'Services', icon: 'm12 2 10 5-10 5L2 7zM2 17l10 5 10-5M2 12l10 5 10-5' },
   { id: 'skills', label: 'Skillset', icon: 'm18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16' },
   { id: 'highlights', label: 'Highlights', icon: 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z' },
@@ -79,6 +80,43 @@ export const SERVICES = [
     label: 'Performance audits',
     icon: 'M13 2 3 14h9l-1 8 10-12h-9z',
     text: 'Finding what makes an app slow or heavy, and fixing it.',
+  },
+];
+
+// Experience view, newest first. `points`, `tags` and `note` are optional.
+export const EXPERIENCE = [
+  {
+    company: 'EarthTrack',
+    role: 'Full Stack Engineer',
+    period: 'Jul 2024 – Present',
+    current: true,
+    points: [
+      'Build the offline-first React Native app warehouse teams use with RFID devices: stocktakes, inbound, outbound and check-out keep working without signal and sync when back online.',
+      'Build features across the Next.js web portal: stocktake planning and approvals, inventory dashboards, a consumption trend chart, exceptions and label settings.',
+      'Build NestJS APIs on PostgreSQL and AWS serverless: server-side exports, a stock coverage and forecast engine, offline messaging sync, and security hardening.',    ],
+    tags: ['Next.js', 'React Native', 'TypeScript', 'NestJS', 'PostgreSQL', 'AWS'],
+  },
+  {
+    company: 'Chugo Pte Ltd',
+    role: 'Junior Full Stack Developer',
+    period: 'Aug 2022 – May 2024',
+    points: [
+      'Built a business card app with React Native, Node.js and Firebase that uses AI to capture, create and share name cards.',
+      'Built e-commerce and dating apps for Android and iOS with React Native, Node.js and Directus.',
+      'Built an e-commerce website and a platform where employers post part-time jobs and part-timers find gigs, with React and Node.js.',
+    ],
+    tags: ['React Native', 'React', 'Node.js', 'Firebase', 'Directus'],
+  },
+  {
+    company: 'Before tech',
+    role: 'Accounting, audit and HR',
+    period: '2017 – 2022',
+    points: [
+      'Regional Roving Accountant at Prycegases Inc., auditing sales centers and an LPG plant.',
+      'Field Associate (HR) at Yearnings Outsourcing Cooperative.',
+      'Accounting Clerk (LTO registration and IT) at Avescor Motors Bacolod.',
+    ],
+    note: 'Years inside real shops and sales centers are why my point-of-sale work gets VAT and the daily cash count right.',
   },
 ];
 

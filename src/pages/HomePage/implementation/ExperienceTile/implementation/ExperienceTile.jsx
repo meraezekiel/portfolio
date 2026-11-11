@@ -7,7 +7,7 @@ const SHIELD_ICON = 'M12 22c5.5-2.5 8-6 8-11V5l-8-3-8 3v6c0 5 2.5 8.5 8 11z';
 
 export const ExperienceTile = () => (
   <BentoTile as="section" className="experience-tile">
-    <TileHeading icon={SHIELD_ICON} title="EXPERIENCE" />
+    <TileHeading icon={SHIELD_ICON} title="EXPERIENCE" to="experience" />
     <p className="tile-text">Years in production, not just tutorials.</p>
     <div className="experience-tile__badge">
       <div className="experience-tile__ring">

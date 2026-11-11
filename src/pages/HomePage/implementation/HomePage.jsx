@@ -20,10 +20,12 @@ import { SkillsView } from './SkillsView';
 import { HighlightsView } from './HighlightsView';
 import { AboutView } from './AboutView';
 import { ContactView } from './ContactView';
+import { ExperienceView } from './ExperienceView';
 import './HomePage.scss';
 
 const VIEWS = {
   work: ProjectsView,
+  experience: ExperienceView,
   services: ServicesView,
   skills: SkillsView,
   highlights: HighlightsView,
