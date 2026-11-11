@@ -124,7 +124,7 @@ export const CONTACT_NOTE = "Tell me what you're building. I usually reply withi
 
 export const HIGHLIGHTS = [
   { title: '4+ years in production', text: 'Scalable web applications with React, Next.js, Node.js and NestJS.', tag: 'Web · APIs · Microservices' },
-  { title: '4 featured projects', text: 'Point-of-sale, ID photo, calendar and QR tools, built end to end.', tag: 'Concept · Build · Deploy' },
+  { title: '5 featured projects', text: 'Point-of-sale, ID photo, calendar, social automation and QR tools, built end to end.', tag: 'Concept · Build · Deploy' },
   { title: '3 platforms', text: 'Web, mobile and desktop, including apps that work fully offline.', tag: 'Next.js · React Native · Tauri' },
 ];
 
@@ -184,6 +184,24 @@ export const PROJECTS = [
     tags: ['Next.js', 'TypeScript', 'Zustand', 'IndexedDB'],
     link: '',
     images: ['cover.webp', 'giveaway-template.webp'],
+  },
+  {
+    slug: 'page-autopilot',
+    title: 'Page Autopilot',
+    tagline: 'posts itself, you approve.',
+    pitch: 'AI drafts Facebook posts and Reels; one tap in Telegram publishes them.',
+    problem: 'Running several Facebook Pages means writing, designing and posting something new every day, and a fully automatic bot posts things nobody checked.',
+    built: 'A Node.js pipeline on GitHub Actions with no server: AI writes the caption, the image card is drawn on a canvas, ffmpeg turns it into a 15-second Reel, and the draft goes to Telegram. Nothing posts until it is approved, then the Facebook Graph API publishes it.',
+    features: [
+      'Approve, redo or skip each draft from Telegram',
+      'Reply to a draft to rewrite its caption',
+      'Photo and Reel post independently, and a retry only redoes the one that failed',
+      'News cards built only from real headlines, with the source credited',
+      'Free to run: GitHub Actions, Telegram and the Gemini free tier',
+    ],
+    tags: ['Node.js', 'GitHub Actions', 'Gemini', 'Telegram Bot API', 'Graph API', 'ffmpeg'],
+    link: '',
+    images: ['cover.webp', 'telegram-draft.webp'],
   },
   {
     slug: 'qr-code-generator',
