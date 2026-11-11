@@ -13,7 +13,7 @@ const ROWS = [
 export const SkillsSection = () => (
   <BentoTile as="section" id="skills" className="skills-section">
     <div className="skills-section__intro">
-      <TileHeading icon={CODE_ICON} title="SKILLSET" />
+      <TileHeading icon={CODE_ICON} title="SKILLSET" to="skills" />
     </div>
     <p className="tile-text skills-section__intro">Frontend and backend — the stack I reach for first.</p>
     <div className="skills-section__rows">

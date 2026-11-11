@@ -1,0 +1,33 @@
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import { ContactView } from './ContactView';
+import { PORTFOLIO_CONFIG } from '../../../../../constants/portfolio';
+
+const originalClipboard = navigator.clipboard;
+afterEach(() => {
+  Object.defineProperty(navigator, 'clipboard', { value: originalClipboard, configurable: true });
+});
+
+test('the email link writes to me', () => {
+  render(<ContactView />);
+  expect(screen.getByRole('link', { name: PORTFOLIO_CONFIG.email })).toHaveAttribute('href', `mailto:${PORTFOLIO_CONFIG.email}`);
+});
+
+test('copy puts the address on the clipboard and says so', async () => {
+  const writeText = jest.fn(() => Promise.resolve());
+  Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+  render(<ContactView />);
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Copy email address' }));
+  });
+  expect(writeText).toHaveBeenCalledWith(PORTFOLIO_CONFIG.email);
+  expect(screen.getByRole('button', { name: 'Copy email address' })).toHaveTextContent('Copied');
+});
+
+test('copy fails quietly when the clipboard is blocked', async () => {
+  Object.defineProperty(navigator, 'clipboard', { value: { writeText: () => Promise.reject(new Error('denied')) }, configurable: true });
+  render(<ContactView />);
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Copy email address' }));
+  });
+  expect(screen.getByRole('button', { name: 'Copy email address' })).toHaveTextContent('Copy');
+});

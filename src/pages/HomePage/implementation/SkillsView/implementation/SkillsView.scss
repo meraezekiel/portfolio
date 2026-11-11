@@ -1,0 +1,36 @@
+.skills-view {
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--soft);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+
+    span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+  }
+}

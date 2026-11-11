@@ -121,7 +121,6 @@
   display: flex;
   flex-direction: column;
   gap: 22px;
-  max-width: 1360px;
 
   @media (max-width: 900px) {
     flex: 1 1 auto;
@@ -139,6 +138,11 @@
   background: var(--soft);
   border: 1px solid var(--line);
   box-shadow: var(--glow);
+
+  // The tiles fill exactly 4 columns x 2 rows; auto-fit would leave holes on wide monitors.
+  @media (min-width: 1400px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 
   @media (max-width: 600px) {
     padding: 10px;

@@ -23,6 +23,8 @@ export const NAV_LINKS = [
   { id: 'contact', label: 'Contact', icon: 'M7.9 20A9 9 0 1 0 4 16.1L2 22Z' },
 ];
 
+export const navLink = (id) => NAV_LINKS.find((link) => link.id === id);
+
 export const TOOLS = [
   { name: 'VS Code', color: '#2f7cf6', mark: '</>' },
   { name: 'Cursor', color: '#14213d', mark: 'C' },
@@ -43,13 +45,44 @@ export const BACKEND_SKILLS = [
   'Node.js', 'NestJS', 'Express.js', 'PostgreSQL', 'MongoDB', 'REST APIs',
 ];
 
+// About view copy (from the earlier About section).
+export const ABOUT = {
+  lead: 'I build fast, production-ready apps — from the database to the pixels.',
+  paragraphs: [
+    'Full-stack developer with 4+ years of experience building scalable web applications with React, Next.js, Node.js and NestJS. Skilled in microservices, CMS development and low-code platforms, taking products from concept to deployment.',
+  ],
+};
+
+// `text` is shown on the Services view. DRAFT copy — edit to taste.
 export const SERVICES = [
-  { label: 'Web apps', icon: 'M3 4h18v12H3zM8 20h8M12 16v4' },
-  { label: 'Micro-frontends', icon: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
-  { label: 'REST APIs', icon: 'm18 16 4-4-4-4M6 8l-4 4 4 4' },
-  { label: 'Mobile apps', icon: 'M7 2h10v20H7zM11 18h2' },
-  { label: 'Performance audits', icon: 'M13 2 3 14h9l-1 8 10-12h-9z' },
+  {
+    label: 'Web apps',
+    icon: 'M3 4h18v12H3zM8 20h8M12 16v4',
+    text: 'Production web applications with React and Next.js, from the first screen to deployment.',
+  },
+  {
+    label: 'Micro-frontends',
+    icon: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
+    text: 'Splitting a large front end into parts that separate teams can build and ship on their own.',
+  },
+  {
+    label: 'REST APIs',
+    icon: 'm18 16 4-4-4-4M6 8l-4 4 4 4',
+    text: 'Back ends and APIs with Node.js, NestJS and Express, on PostgreSQL or MongoDB.',
+  },
+  {
+    label: 'Mobile apps',
+    icon: 'M7 2h10v20H7zM11 18h2',
+    text: 'React Native and Expo apps for Android and iOS, including ones that work fully offline.',
+  },
+  {
+    label: 'Performance audits',
+    icon: 'M13 2 3 14h9l-1 8 10-12h-9z',
+    text: 'Finding what makes an app slow or heavy, and fixing it.',
+  },
 ];
+
+export const CONTACT_NOTE = "Tell me what you're building. I usually reply within a day.";
 
 export const HIGHLIGHTS = [
   { title: '4+ years in production', text: 'Scalable web applications with React, Next.js, Node.js and NestJS.', tag: 'Web · APIs · Microservices' },

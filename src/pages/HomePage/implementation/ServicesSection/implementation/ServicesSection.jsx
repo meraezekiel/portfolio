@@ -7,7 +7,7 @@ const LAYERS_ICON = 'm12 2 10 5-10 5L2 7zM2 17l10 5 10-5M2 12l10 5 10-5';
 
 export const ServicesSection = () => (
   <BentoTile as="section" id="services" className="services-section">
-    <TileHeading icon={LAYERS_ICON} title="SERVICES" />
+    <TileHeading icon={LAYERS_ICON} title="SERVICES" to="services" />
     <p className="tile-text">What I build for teams and founders.</p>
     <div className="services-section__list">
       {SERVICES.map(({ label, icon }, index) => (

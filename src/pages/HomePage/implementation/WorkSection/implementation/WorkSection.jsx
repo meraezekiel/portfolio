@@ -27,7 +27,7 @@ export const WorkSection = () => {
       onBlur={resume}
     >
       <div className="work-section__intro">
-        <TileHeading icon={FOLDER_ICON} title="PROJECTS" />
+        <TileHeading icon={FOLDER_ICON} title="PROJECTS" to="work" />
         <p className="tile-text">A few things I've shipped recently — production apps, side projects, and experiments.</p>
         <div className="work-section__dots">
           {projects.map(({ slug, title }, index) => (

@@ -1,4 +1,4 @@
-import { usePortfolioSidebarHandler } from './usePortfolioSidebarHandler';
+import { ViewLink } from '../../ViewLink';
 import { PORTFOLIO_CONFIG, NAV_LINKS } from '../../../constants/portfolio';
 import profile from '../../../assets/images/profile.jpg';
 import './PortfolioSidebar.scss';
@@ -7,7 +7,6 @@ const SUN_ICON = 'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zM11 20h2v3h-2
 const MOON_ICON = 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z';
 
 export const PortfolioSidebar = ({ theme, onToggleTheme }) => {
-  const { activeId, handleNavClick } = usePortfolioSidebarHandler();
   const {
     name, handle, email, socials,
   } = PORTFOLIO_CONFIG;
@@ -50,16 +49,15 @@ export const PortfolioSidebar = ({ theme, onToggleTheme }) => {
 
       <nav className="portfolio-sidebar__nav" aria-label="Main">
         {NAV_LINKS.map(({ id, label, icon }) => (
-          <a
+          <ViewLink
             key={id}
-            href={`#${id}`}
-            className={`portfolio-sidebar__link${activeId === id ? ' portfolio-sidebar__link--active' : ''}`}
-            aria-current={activeId === id ? 'true' : undefined}
-            onClick={(e) => handleNavClick(e, id)}
+            to={id}
+            className="portfolio-sidebar__link"
+            activeClassName="portfolio-sidebar__link--active"
           >
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={icon} /></svg>
             {label}
-          </a>
+          </ViewLink>
         ))}
       </nav>
 

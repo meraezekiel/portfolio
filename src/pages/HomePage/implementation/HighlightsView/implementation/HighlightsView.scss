@@ -1,0 +1,46 @@
+.highlights-view {
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__number {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  &__title {
+    margin: 4px 0 0;
+    font-family: var(--font-sans);
+    font-size: clamp(20px, 1.8vw, 26px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+  }
+
+  &__tag {
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  &__next {
+    margin: 16px 6px 2px;
+    font-size: 14px;
+    color: var(--muted);
+
+    a { font-weight: 600; }
+  }
+}

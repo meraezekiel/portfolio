@@ -1,0 +1,84 @@
+.projects-view {
+  &__grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  }
+
+  &__card {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px;
+    border-radius: 20px;
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    box-shadow: var(--shadow);
+    transition: transform 250ms var(--ease);
+
+    &:hover { transform: translateY(-4px); }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  }
+
+  &__shot {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #e7e4dc;
+
+    .project-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 6px 6px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__tag {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__card {
+      transition: none;
+
+      &:hover { transform: none; }
+    }
+  }
+}

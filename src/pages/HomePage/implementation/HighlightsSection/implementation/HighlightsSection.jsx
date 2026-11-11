@@ -8,7 +8,7 @@ const STAR_ICON = 'M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.
 export const HighlightsSection = () => (
   <BentoTile as="section" wide id="highlights" className="highlights-section">
     <div className="highlights-section__intro">
-      <TileHeading icon={STAR_ICON} title="HIGHLIGHTS" />
+      <TileHeading icon={STAR_ICON} title="HIGHLIGHTS" to="highlights" />
       <p className="tile-text">The work so far, in three lines.</p>
     </div>
     <div className="highlights-section__list">
