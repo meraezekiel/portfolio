@@ -2,6 +2,7 @@ import { useContactViewHandler } from './useContactViewHandler';
 import { SectionView } from '../../../../../components/SectionView';
 import { PORTFOLIO_CONFIG, CONTACT_NOTE, navLink } from '../../../../../constants/portfolio';
 import './ContactView.scss';
+import { ArrowIcon } from '../../../../../components/ArrowIcon';
 
 const SOCIAL_LABELS = { github: 'GitHub', linkedin: 'LinkedIn' };
 
@@ -36,12 +37,12 @@ export const ContactView = () => {
           <h2 className="section-view__card-title">Elsewhere</h2>
           <a href={`mailto:${email}`} className="contact-view__link">
             Email
-            <span aria-hidden="true">↗</span>
+            <ArrowIcon size={12} />
           </a>
           {links.map(([key, url]) => (
             <a key={key} href={url} className="contact-view__link" target="_blank" rel="noopener noreferrer">
               {SOCIAL_LABELS[key] ?? key}
-              <span aria-hidden="true">↗</span>
+              <ArrowIcon size={12} />
             </a>
           ))}
         </nav>

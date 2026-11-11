@@ -2,6 +2,7 @@ import { createPortal } from 'react-dom';
 import { useCaseStudyPanelHandler } from './useCaseStudyPanelHandler';
 import { ProjectImage } from '../../../../../../../components/ProjectImage/implementation/ProjectImage';
 import './CaseStudyPanel.scss';
+import { ArrowIcon } from '../../../../../../../components/ArrowIcon';
 
 export const CaseStudyPanel = ({ project, open, onClose }) => {
   const {
@@ -80,9 +81,7 @@ export const CaseStudyPanel = ({ project, open, onClose }) => {
           {project.link && (
             <a className="case-study__link" href={project.link} target="_blank" rel="noopener noreferrer">
               Visit live site
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M3 3h6v6M3 11L11 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
+              <ArrowIcon size={14} />
             </a>
           )}
         </div>

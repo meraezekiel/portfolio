@@ -4,6 +4,7 @@ import { ProjectImage } from '../../../../../components/ProjectImage';
 import { CaseStudyPanel } from '../../WorkSection/implementation/CaseStudyPanel';
 import { navLink } from '../../../../../constants/portfolio';
 import './ProjectsView.scss';
+import { ArrowIcon } from '../../../../../components/ArrowIcon';
 
 export const ProjectsView = () => {
   const {
@@ -39,7 +40,7 @@ export const ProjectsView = () => {
               </span>
               <span className="projects-view__more">
                 Read case study
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3h6v6M3 11L11 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
+                <ArrowIcon size={12} />
               </span>
             </span>
           </button>

@@ -1,5 +1,6 @@
 import { PORTFOLIO_CONFIG } from '../../../../../constants/portfolio';
 import './HeroSection.scss';
+import { ArrowIcon } from '../../../../../components/ArrowIcon';
 
 export const HeroSection = () => (
   <header id="hero" className="hero-section">
@@ -11,9 +12,7 @@ export const HeroSection = () => (
     </div>
     <a href={`mailto:${PORTFOLIO_CONFIG.email}`} className="hero-section__cta">
       Get in touch
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-        <path d="M3 3h6v6M3 11L11 3" stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" />
-      </svg>
+      <ArrowIcon size={14} color="var(--accent)" />
     </a>
   </header>
 );

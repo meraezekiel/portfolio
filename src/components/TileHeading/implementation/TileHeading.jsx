@@ -1,6 +1,7 @@
 import { ViewLink } from '../../ViewLink';
 import { navLink } from '../../../constants/portfolio';
 import './TileHeading.scss';
+import { ArrowIcon } from '../../ArrowIcon';
 
 export const TileHeading = ({ icon, title, to }) => (
   <div className="tile-heading">
@@ -13,7 +14,7 @@ export const TileHeading = ({ icon, title, to }) => (
     {to && (
       <ViewLink to={to} className="tile-heading__open" aria-label={`Open ${navLink(to)?.label ?? title}`}>
         Open
-        <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3h6v6M3 11L11 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
+        <ArrowIcon size={11} />
       </ViewLink>
     )}
   </div>
