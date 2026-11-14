@@ -25,7 +25,7 @@ export const ContactView = () => {
           <h2 className="contact-view__title">Have a project in mind?</h2>
           <p className="section-view__text">{CONTACT_NOTE}</p>
           <div className="contact-view__email">
-            <a href={`mailto:${email}`} className="contact-view__address">{email}</a>
+            <a href={`mailto:${email}`} className="contact-view__address" onClick={copyEmail}>{email}</a>
             <button type="button" className="contact-view__copy" onClick={copyEmail} aria-label="Copy email address">
               {copied ? 'Copied' : 'Copy'}
             </button>
@@ -35,7 +35,7 @@ export const ContactView = () => {
 
         <nav className="section-view__card contact-view__links" aria-label="Elsewhere">
           <h2 className="section-view__card-title">Elsewhere</h2>
-          <a href={`mailto:${email}`} className="contact-view__link">
+          <a href={`mailto:${email}`} className="contact-view__link" onClick={copyEmail}>
             Email
             <ArrowIcon size={12} />
           </a>

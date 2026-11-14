@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, within } from '@testing-library/react';
-import { HomePage } from './HomePage';
+import { HomePage, statusText } from './HomePage';
 import { NAV_LINKS, PROJECTS } from '../../../constants/portfolio';
 
 // Lenis ships ES modules Jest cannot load; smooth scrolling is not under test here.
@@ -50,4 +50,11 @@ test('the projects view lists every project and opens its case study', () => {
   fireEvent.click(screen.getByRole('button', { name: `Open ${PROJECTS[1].title} case study` }));
   expect(screen.getByRole('dialog', { name: PROJECTS[1].title })).toBeInTheDocument();
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Projects');
+});
+
+test('the status pill puts availability first and adds the visitor count', () => {
+  expect(statusText('Available for work', 1234)).toBe('Available for work · 1,234 visitors');
+  expect(statusText('Available for work', 1)).toBe('Available for work · 1 visitor');
+  expect(statusText('Available for work', null)).toBe('Available for work');
+  expect(statusText('', 4)).toBe('4 visitors');
 });

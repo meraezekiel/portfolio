@@ -15,6 +15,16 @@ test('links to GitHub and LinkedIn', () => {
   expect(screen.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', PORTFOLIO_CONFIG.socials.linkedin);
 });
 
+// A mailto: link does nothing on a device with no mail app, so the button opens the Contact view.
+test('the email button opens the contact view', () => {
+  const showView = jest.fn();
+  renderInPage('hero', showView);
+  const email = screen.getByRole('link', { name: 'Email' });
+  expect(email).toHaveAttribute('href', '#contact');
+  fireEvent.click(email);
+  expect(showView).toHaveBeenCalledWith('contact');
+});
+
 test('has a resume download button', () => {
   renderInPage('hero');
   expect(screen.getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', PORTFOLIO_CONFIG.resume);

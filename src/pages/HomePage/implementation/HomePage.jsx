@@ -34,6 +34,13 @@ const VIEWS = {
   contact: ContactView,
 };
 
+export const statusText = (availability, visitors) => {
+  const count = visitors === null
+    ? ''
+    : `${visitors.toLocaleString('en-US')} ${visitors === 1 ? 'visitor' : 'visitors'}`;
+  return [availability, count].filter(Boolean).join(' · ');
+};
+
 const Overview = () => (
   <>
     <HeroSection />
@@ -55,11 +62,9 @@ export const HomePage = () => {
   const viewRoute = useViewRouteHandler(contentRef);
   const { view } = viewRoute;
   const View = VIEWS[view];
-  // The pill shows the unique visitor count once Supabase answers, and "Available for work" until then.
+  // "Available for work · 4 visitors": availability first, the count added once Supabase answers.
   const visitors = useVisitorCountHandler(VISITOR_COUNTER);
-  const status = visitors === null
-    ? PORTFOLIO_CONFIG.availability
-    : `${visitors.toLocaleString('en-US')} unique ${visitors === 1 ? 'visitor' : 'visitors'}`;
+  const status = statusText(PORTFOLIO_CONFIG.availability, visitors);
 
   return (
     <SmoothScroll>

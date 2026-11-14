@@ -41,9 +41,10 @@ export const PortfolioSidebar = ({ theme, onToggleTheme }) => {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M12 12v6m0 0-2.5-2.5M12 18l2.5-2.5" /></svg>
             </a>
           )}
-          <a href={`mailto:${email}`} aria-label="Email" className="portfolio-sidebar__action">
+          {/* Opens the Contact view (address + Copy): a mailto: link does nothing without a mail app. */}
+          <ViewLink to="contact" aria-label="Email" title={email} className="portfolio-sidebar__action">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
-          </a>
+          </ViewLink>
           <button type="button" aria-label="Toggle dark mode" className="portfolio-sidebar__action" onClick={onToggleTheme}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={theme === 'dark' ? SUN_ICON : MOON_ICON} /></svg>
           </button>

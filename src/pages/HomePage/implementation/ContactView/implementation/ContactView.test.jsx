@@ -37,3 +37,14 @@ test('lists the resume with the other links', () => {
   const links = within(screen.getByRole('navigation', { name: 'Elsewhere' }));
   expect(links.getByRole('link', { name: /resume/i })).toHaveAttribute('href', PORTFOLIO_CONFIG.resume);
 });
+
+// mailto: does nothing without a mail app, so the Email link also copies the address.
+test('the Email link under Elsewhere copies the address too', async () => {
+  const writeText = jest.fn().mockResolvedValue();
+  Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+  render(<ContactView />);
+  const links = within(screen.getByRole('navigation', { name: 'Elsewhere' }));
+  await act(async () => { fireEvent.click(links.getByRole('link', { name: /^email/i })); });
+  expect(writeText).toHaveBeenCalledWith(PORTFOLIO_CONFIG.email);
+  expect(screen.getByRole('button', { name: 'Copy email address' })).toHaveTextContent('Copied');
+});
