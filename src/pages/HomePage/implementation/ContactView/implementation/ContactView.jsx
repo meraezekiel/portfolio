@@ -36,7 +36,12 @@ export const ContactView = () => {
         <nav className="section-view__card contact-view__links" aria-label="Elsewhere">
           <h2 className="section-view__card-title">Elsewhere</h2>
           <a href={`mailto:${email}`} className="contact-view__link" onClick={copyEmail}>
-            Email
+            {copied ? (
+              <span className="contact-view__copied">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                Email copied
+              </span>
+            ) : 'Email'}
             <ArrowIcon size={12} />
           </a>
           {PORTFOLIO_CONFIG.resume && (

@@ -32,6 +32,19 @@ test('copy fails quietly when the clipboard is blocked', async () => {
   expect(screen.getByRole('button', { name: 'Copy email address' })).toHaveTextContent('Copy');
 });
 
+// In-app browsers (Messenger, Instagram) often block the clipboard API but allow the old copy command.
+test('falls back to the old copy command when the clipboard API is blocked', async () => {
+  Object.defineProperty(navigator, 'clipboard', { value: { writeText: () => Promise.reject(new Error('denied')) }, configurable: true });
+  document.execCommand = jest.fn().mockReturnValue(true);
+  render(<ContactView />);
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Copy email address' }));
+  });
+  expect(document.execCommand).toHaveBeenCalledWith('copy');
+  expect(screen.getByRole('button', { name: 'Copy email address' })).toHaveTextContent('Copied');
+  delete document.execCommand;
+});
+
 test('lists the resume with the other links', () => {
   render(<ContactView />);
   const links = within(screen.getByRole('navigation', { name: 'Elsewhere' }));
@@ -47,4 +60,6 @@ test('the Email link under Elsewhere copies the address too', async () => {
   await act(async () => { fireEvent.click(links.getByRole('link', { name: /^email/i })); });
   expect(writeText).toHaveBeenCalledWith(PORTFOLIO_CONFIG.email);
   expect(screen.getByRole('button', { name: 'Copy email address' })).toHaveTextContent('Copied');
+  // The confirmation also shows on the link itself, which on a phone is far below the Copy button.
+  expect(links.getByRole('link', { name: /email copied/i })).toBeInTheDocument();
 });
