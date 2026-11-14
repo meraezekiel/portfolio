@@ -1,10 +1,11 @@
 import { useRef } from 'react';
 import { useHomePageHandler } from './useHomePageHandler';
 import { useViewRouteHandler, HOME_VIEW } from './handler/useViewRouteHandler';
+import { useVisitorCountHandler } from './handler/useVisitorCountHandler';
 import { SmoothScroll } from '../../../components/SmoothScroll';
 import { PortfolioSidebar } from '../../../components/PortfolioSidebar';
 import { ViewContext } from '../../../components/ViewLink';
-import { PORTFOLIO_CONFIG } from '../../../constants/portfolio';
+import { PORTFOLIO_CONFIG, VISITOR_COUNTER } from '../../../constants/portfolio';
 import { HeroSection } from './HeroSection';
 import { ToolsStrip } from './ToolsStrip';
 import { WorkSection } from './WorkSection';
@@ -54,6 +55,11 @@ export const HomePage = () => {
   const viewRoute = useViewRouteHandler(contentRef);
   const { view } = viewRoute;
   const View = VIEWS[view];
+  // The pill shows the unique visitor count once Supabase answers, and "Available for work" until then.
+  const visitors = useVisitorCountHandler(VISITOR_COUNTER);
+  const status = visitors === null
+    ? PORTFOLIO_CONFIG.availability
+    : `${visitors.toLocaleString('en-US')} unique ${visitors === 1 ? 'visitor' : 'visitors'}`;
 
   return (
     <SmoothScroll>
@@ -73,10 +79,10 @@ export const HomePage = () => {
             {view !== 'contact' && <ContactSection />}
           </main>
 
-          {PORTFOLIO_CONFIG.availability && (
+          {status && (
             <div className="portfolio-page__status">
               <span aria-hidden="true" />
-              {PORTFOLIO_CONFIG.availability}
+              {status}
             </div>
           )}
         </div>

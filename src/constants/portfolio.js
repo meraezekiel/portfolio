@@ -15,6 +15,13 @@ export const PORTFOLIO_CONFIG = {
   availability: 'Available for work',
 };
 
+// Unique visitor counter (supabase/visitor-counter.sql). Set both in Vercel → Settings →
+// Environment Variables. The anon key is public by design; the table is locked by RLS.
+export const VISITOR_COUNTER = {
+  url: process.env.REACT_APP_SUPABASE_URL || '',
+  key: process.env.REACT_APP_SUPABASE_ANON_KEY || '',
+};
+
 export const NAV_LINKS = [
   { id: 'hero', label: 'Home', icon: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z' },
   { id: 'work', label: 'Projects', icon: 'M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z' },
