@@ -7,8 +7,10 @@ export const PORTFOLIO_CONFIG = {
   // A social with an empty URL hides its sidebar button.
   socials: {
     github: 'https://github.com/meraezekiel',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/john-louie-antoque-b86995244/',
   },
+  // PDF in public/. Shown as "Resume" buttons; set to '' to hide them.
+  resume: `${process.env.PUBLIC_URL}/John-Louie-Antoque-Resume.pdf`,
   // Floating status pill. Set to '' to hide it.
   availability: 'Available for work',
 };

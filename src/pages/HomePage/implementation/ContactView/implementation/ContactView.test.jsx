@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, act, within } from '@testing-library/react';
 import { ContactView } from './ContactView';
 import { PORTFOLIO_CONFIG } from '../../../../../constants/portfolio';
 
@@ -30,4 +30,10 @@ test('copy fails quietly when the clipboard is blocked', async () => {
     fireEvent.click(screen.getByRole('button', { name: 'Copy email address' }));
   });
   expect(screen.getByRole('button', { name: 'Copy email address' })).toHaveTextContent('Copy');
+});
+
+test('lists the resume with the other links', () => {
+  render(<ContactView />);
+  const links = within(screen.getByRole('navigation', { name: 'Elsewhere' }));
+  expect(links.getByRole('link', { name: /resume/i })).toHaveAttribute('href', PORTFOLIO_CONFIG.resume);
 });

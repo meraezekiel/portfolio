@@ -32,6 +32,12 @@
     text-wrap: pretty;
   }
 
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
   &__cta {
     display: flex;
     align-items: center;
@@ -50,6 +56,15 @@
     &:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
+    }
+
+    &--ghost {
+      background: var(--card);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+
+      &:hover { color: var(--ink); }
     }
   }
 

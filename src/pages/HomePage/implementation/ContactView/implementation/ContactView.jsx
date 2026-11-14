@@ -39,6 +39,12 @@ export const ContactView = () => {
             Email
             <ArrowIcon size={12} />
           </a>
+          {PORTFOLIO_CONFIG.resume && (
+            <a href={PORTFOLIO_CONFIG.resume} download className="contact-view__link">
+              Resume (PDF)
+              <ArrowIcon size={12} />
+            </a>
+          )}
           {links.map(([key, url]) => (
             <a key={key} href={url} className="contact-view__link" target="_blank" rel="noopener noreferrer">
               {SOCIAL_LABELS[key] ?? key}

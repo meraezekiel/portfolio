@@ -9,10 +9,15 @@ const renderInPage = (view, showView = () => {}) => render(
   </ViewContext.Provider>,
 );
 
-test('hides a social button that has no URL', () => {
+test('links to GitHub and LinkedIn', () => {
   renderInPage('hero');
   expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', PORTFOLIO_CONFIG.socials.github);
-  expect(screen.queryByRole('link', { name: 'LinkedIn' })).toBeNull();
+  expect(screen.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', PORTFOLIO_CONFIG.socials.linkedin);
+});
+
+test('has a resume download button', () => {
+  renderInPage('hero');
+  expect(screen.getByRole('link', { name: 'Download resume' })).toHaveAttribute('href', PORTFOLIO_CONFIG.resume);
 });
 
 test('the theme button asks for a toggle', () => {
